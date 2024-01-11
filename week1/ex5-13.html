@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전환</title>
+
+    <style>
+        /* transition 정한 시간동안 서서히 전환 시킴 */
+        span {transition: fontsize 5s, color 5s, margin-left 2s;}
+        span:hover {font-size: 500%; color: red;}
+        span:active {margin-left: 100px;}
+    </style>
+
+</head>
+<body>
+    
+    <h3>font-size에 대한 전환</h3>
+    <hr>
+    <p><span>꽝</span> 글자에 마우스를 올리면 전환됨</p>
+
+</body>
+</html>

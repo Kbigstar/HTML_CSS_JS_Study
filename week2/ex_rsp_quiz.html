@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<style>
+		
+	</style>
+<meta charset = "UTF-8">
+<title> 가위바위보 </title>
+<script>
+	let startDate = new Date();
+	document.write("<h1>컴퓨터 가위, 바위, 보 맞추기</h1>");
+	let game = prompt("가위, 바위, 보 중 선택하세요?");
+	
+	let com = Math.ceil( Math.random() * 3 );
+	console.log(com);
+ 
+	let userSelect = 0;
+	
+
+
+	while(true){
+	
+		if(game === "가위"){
+			userSelect = 1;
+		}
+		else if(game === "바위"){
+			userSelect = 2;
+		}
+		else if(game === "보"){
+			userSelect = 3;
+		}
+
+		document.write("<img src='./images/math_com_" + com + ".jpg'> ");
+		document.write("<img src='./images/math_user_" + userSelect + ".jpg'>");
+
+		if((userSelect == 1 && com == 3) || (userSelect == 2 && com == 1) || (userSelect == 3 && com == 2)){
+			document.write("<img src='./images/game_1.jpg'>");
+			let afterDate = new Date();
+        	document.write("접속 후 : " +
+                (afterDate.getTime() - startDate.getTime()) / 1000 + "초 지남");
+			break;
+		}
+		else if((userSelect == 1 && com == 2) || (userSelect == 2 && com == 3) || (userSelect == 3 && com == 1)){
+			document.write("<img src='./images/game_2.jpg'>");
+			let afterDate = new Date();
+        	document.write("<b>접속 후 : " +
+                (afterDate.getTime() - startDate.getTime()) / 1000 + "초 지남</b>");
+			break;
+		}
+		else{
+			document.write("<img src='./images/game_3.jpg'>");
+			game = prompt("비겼습니다.. 가위, 바위, 보 중 선택하세요?");
+			com = Math.ceil( Math.random() * 3 );
+		}
+		
+		
+		
+	}
+
+	//  아래 com에는 실행마다(f5) 다른랜덤값을 가짐
+	//랜덤함수를 활용하여 가위바위보 게임을 만들어보세요 ^^ 
+	// 1 입력에 대한 출력은 조건식 전에 출력
+
+	// 2 조건식 작성 
+	// 사용자 입력의 가위, 바위, 보 를 -> 1, 2, 3 으로
+	// 이기는 모든 경우의 수 or
+	// 지는 모든 경우의 수 or 
+	// 비기는 경우의 수 를 먼저 생각해보세요  
+	// if((이기는1) || (이기는2) || (이기는3)){
+	// }else if(==)
+	
+
+
+	// 3 조건에 따른 game_1,2,3.jpg 출력 
+
+</script>
+</head>
+<body>
+</body>
+</html>

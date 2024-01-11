@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 개요</title>
+
+    <script>
+        // 자바 스크립트 주석
+        /*
+            - 자료형
+            1. Boolean (true/false)
+            2.
+            3.
+        */
+       
+        // console.log 는 개발자도구 F12 console에 출력하는 방법.
+       console.log("1. Boolean 자료형");
+       console.log(52 < 100);
+       console.log("false");
+
+       // typeOf(변수) 변수의 타입을 리턴하는 함수
+       console.log("52 < 100 리턴값의 자료형은:" + typeof(52 < 100));
+
+        /*  2. undefined
+            선언 하지 않은 변수 또는 변수를 선언했지만 초기화를 안했을 때,
+            해당 변수의 자료형은 undefined 입니다.
+        */
+        let nm; // 변수 선언(초기화 하지 않았음)
+        console.log("nm의 자료형은? : " + typeof(nm));
+        let nm2 = 0;
+        console.log("nm2의 자료형은? : " + typeof(nm2));
+        let nm3 = "fdfs";
+        console.log("nm3의 자료형은? : " + typeof(nm3));
+
+        /*
+            3. null
+            변수의 값이 비어있다는 표기
+            undefined형은 알 수 없음 을 뜻하고, null은 메모리 안에 null값(아무것도 없는)이 저장된 상태
+        */
+       console.log("3. null 자료형");
+       let no = null;
+       console.log(no);
+
+       /*
+            4. number 
+            자바 스크립트는 정수와 실수 구분없이 모두 같은 number 자료형으로 인식한다.
+       */
+
+       console.log("4. number 자료형")
+       let num1 = 123;
+       let num2 = 123.456;
+       console.log("num1 정수 : " + typeof(num1));
+       console.log("num2 실수 : " + typeof(num2)); 
+
+    
+       /*
+            5. String
+       */
+        
+       console.log("5. String 자료형");
+       let str = "hi";
+       console.log("str 자료형은 : " + typeof(str));
+
+       // prompt 사용자 입력
+       // document.write 화면 출력 
+       let userName = prompt("이름을 입력 해주세요!!");
+       console.log(userName);
+       document.writeln(userName + "님 환영합니다.");
+       document.write("<h3> Welcome ! </h3>");
+       document.write("<hr>");
+       document.write(" 2 + 5 는 <br>");
+       document.write("<b>" + ( 2 + 5 ) + "</b> 입니다.");
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script 태그에 작성</title>
+
+    <script>
+        function fn_over(obj){
+            obj.src = './img/banana.PNG';
+        }
+        function fn_out(obj){
+            obj.src = './img/apple.PNG';
+        }
+        function fn_onClick(obj){
+             alert("hi")
+        }
+    </script>
+
+</head>
+<body>
+    
+    <img src="./img/apple.PNG" onmouseover="fn_over(this)"
+        onmouseout="fn_out(this)" onclick="fn_onClick(this)">
+
+</body>
+</html>

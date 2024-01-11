@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<style>
+		body {
+			text-align: center;
+		}		
+		span{
+			font-size: 30px;
+		}
+		#vs_id {
+			font-size: 100px;
+			color: red;
+			
+			
+		}
+	</style>
+<meta charset = "UTF-8">
+<title> 가위바위보 </title>
+<script>
+  
+	document.write("<h1>컴퓨터 가위, 바위, 보 맞추기</h1>");
+	let game = prompt("가위, 바위, 보 중 선택하세요?", "가위");
+	//  아래 com에는 실행마다(f5) 다른랜덤값을 가짐
+	let com = Math.ceil( Math.random() * 3 );
+	console.log(com);
+
+	// 사용자 입력 변환
+	let userNum;
+	switch(game){
+		case "가위":userNum = 1;
+			break;
+		case "바위":userNum = 2;
+			break;
+		case "보":userNum = 3;
+			break;
+		
+		default : alert("잘못 입력하셨습니다!!");
+		location.reload(); // reload() --> F5(새로고침)와 같다.
+	}
+
+	// 선택 이미지 출력
+	document.write("<div>");
+	
+	// com
+	document.write("<span>");
+	document.write("<img src='./images/math_com_" + com + ".jpg'>");
+	document.write("com</span>");
+	document.write("<span id='vs_id'> VS </span>");
+
+	// user
+	document.write("<span>");
+	document.write("<img src='./images/math_user_" + userNum + ".jpg'>");
+	document.write("user</span>");
+	document.write("</div>");
+	
+	if(com == userNum){ 
+		document.write("<img src='./images/game_3.jpg'>");
+		
+	}
+	else if((userNum == 1 && com == 3) || (userNum == 2 && com == 1) || (userNum == 3 && com == 2)){
+		document.write("<img src='./images/game_1.jpg'>");
+
+		
+	}
+	else if((userNum == 1 && com == 2) || (userNum == 2 && com == 3) || (userNum == 3 && com == 1)){
+		document.write("<img src='./images/game_2.jpg'>");
+
+	}
+	
+
+</script>
+</head>
+<body>
+</body>
+</html>

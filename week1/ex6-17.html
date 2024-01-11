@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for문 css변경</title>
+</head>
+<body>
+    
+    <h3>for문으로 10xp ~ 35xp 크기 텍스트 출력</h3>
+    <hr>
+    
+    
+    <script>
+
+        for(let i = 10; i <= 35; i+=5){
+            document.write("<span ");
+            // 원래의 span태그에서 style= "font-size 로 시작하지만 문자열로 사용하여
+            // "style= 'font-size: 이런식으로 표현하였기에 '를 사용하여 표현해줌.
+            document.write("style= 'font-size:" + i 
+                + "px; color: rgb("+(i*2)+", "+(i*9)+", "+(i*4)+")'; >" );
+            document.write(i + "px");
+            document.write("</span><br>");
+        }
+
+    </script>
+
+    
+
+</body>
+</html>

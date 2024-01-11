@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>z-index 실습</title>
+
+    <style>
+        /* absolute 절대위치 */
+        div {position: absolute;} 
+        img {position: absolute;}
+
+        #img1 {z-index: -1;}
+        #img2 {z-index: 1; left: 50px; top: 50px;}
+        #img3 {z-index: 2; left: 100px; top: 100px;}
+
+        ul {margin-top: 300px;}
+    </style>
+
+</head>
+<body>
+    <h1>z-index 앞 뒤에 위치 시키기</h1>
+    <hr>
+    <div>
+        <img src="./img/apple.PNG" id="img1" width="100px" height="100px">
+        <img src="./img/banana.PNG" id="img2" width="100px" height="100px">
+        <img src="./img/flame.jpg" id="img3" width="100px" height="100px">
+    </div>
+    
+    <ul>
+        <li><a href="#">홈</a></li>
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+        <li><a href="#">메뉴3</a></li>
+        
+    </ul>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        html, body {margin: 0; padding: 0; height: 100%;}
+        #header { width: 100%; height: 15%; background-color: yellow;}
+        #nav { width: 15%; height: 70%; 
+            background-color: orange; float: left;}
+        #section {width: 70%; height: 70%; 
+            background-color: olivedrab; float: left;}
+        #aside {width: 15%; height: 70%; float: left; 
+            background-color: orange;}
+        #footer {width: 100%; height: 15%; clear: both; 
+            background-color: purple;}  
+        #left {width: 50%; height: 100%; float: left; background-color: aqua;}      
+    </style>
+</head>
+<body>
+    <!-- span 태그는 인라인 태그 -->
+    <div id="header">header <span>hi</span></div>
+    <div id="nav">nav</div>
+    <div id="section">section
+        <div id="left">1</div>
+        <div id="right">2</div>
+
+    </div>
+    <div id="aside">aside</div>
+    <div id="footer">footer</div>
+</body>
+</html>

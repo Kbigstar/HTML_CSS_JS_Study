@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM</title>
+</head>
+<body>
+        <h3>DDOM 객체의 기본 프로퍼티</h3>
+        <hr>
+        <p id = "firstP" style="color: blue; background-color: yellow;"
+            onclick="this.style.color='teal'">
+            이것은  <span style="color: red;">문장 입니다.</span>
+        </p>
+        <script>
+            // 객체 자신
+             let p = document.getElementById("firstP");
+             console.log(p);
+             console.log('p.id', p.id);
+             console.log('p.tagName', p.tagName);
+             console.log('p.innerHTML', p.innerHTML);
+             console.log('p.style.color', p.style.color);
+             console.log('p.onclick', p.onclick);
+             console.log('p.childElementCount', p.childElementCount);
+            //  let text = "p.id = " + p.id + "\n";
+
+            function fn_change(){
+                p.style.color = 'red';
+                p.style.fontSize = '100px';
+                p.style.border = '3px dotted magenta';
+            }
+
+            function fn_change_img(){
+                p.innerHTML = "나의 <img src='./images/puppy.png'> 강아지 입니다.";
+            }
+
+
+        </script>
+        
+        <button type="button" onclick="fn_change()" ondblclick="fn_change_img()">변경</button>
+</body>
+</html>

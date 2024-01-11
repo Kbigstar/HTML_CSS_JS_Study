@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사칙연산기</title>
+</head>
+<body>
+    <h1>사칙연산 식을 입력받아 계산하는 기능</h1>
+    <hr>
+
+    <script>
+        let msg = prompt("계산식을 입력하시오");
+        
+        // 문자열 사칙연산을 계산하고 결과를 리턴하는 함수
+        let result = eval(msg);
+
+        document.write("요청하신 " + msg + "식의 결과는 : " + result + " 입니다.");
+    </script>
+</body>
+</html>

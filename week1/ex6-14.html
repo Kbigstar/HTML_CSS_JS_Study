@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if - else 이용</title>
+</head>
+<body>
+    <h3>if-else를 이용한 학점 출력</h3>
+    <hr>
+    <!-- script 태그는 html 문서 어디서든 사용가능(여러개도 괜찮음) -->
+    <script>
+        let grade;
+
+        //사용자 입력은 기본 String
+        let score = prompt("점수를 입력하세요");
+        // score 변수가 최초 String 이지만 int 형태로도 받아드림
+        score = parseInt(score); // 정수형태로 타입 변환.
+
+        if (score >= 90) {
+            grade = "A";
+        }
+        else if (score >= 80) {
+            grade = "B";
+        } 
+        else {
+            grade = "F"
+        }
+
+        document.write(score+"점은 "+grade+"학점 입니다.")
+    </script>
+</body>
+</html>

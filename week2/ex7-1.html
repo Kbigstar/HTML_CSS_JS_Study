@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날짜 객체</title>
+
+    <script>
+        // 코어 객체 중 Date
+        let now = new Date(); // 현재 시간
+
+        console.log('now : ', now);
+        document.write("getDate : " + now.getDate() + "<br>");
+        document.write("getMonth : " + (now.getMonth() + 1) + "<br>"); // Month는 0부터 시작한다..
+        document.write("getFullYear : " + now.getFullYear() + "<br>");
+        
+        // UTC (Coordinated Universal Time) 전세계 시간 표준화를 위한 기준시간
+        // 1970년 1월 1일 00:00:00 UTC로 부터 현재까지의 밀리초를 출력함.
+        document.write("getTime : " + now.getTime() + "<br>"); 
+        document.write("toString() : " + now.toString() + "<br>");
+        document.write("now : " + now + "<br>");
+        document.write("toUTCString() : " + now.toUTCString() + "<br>"); // 세계 표준 시간
+        
+        alert("기다리고 있음..");
+        let after = new Date();
+        document.write("접속 후 : " +
+                (after.getTime() - now.getTime()) / 1000 + "초 지남");
+        // console.log(typeof(now));
+        // console.log(typeof(now.toString()));
+    </script>
+
+</head>
+<body>
+    
+
+
+
+</body>
+</html>

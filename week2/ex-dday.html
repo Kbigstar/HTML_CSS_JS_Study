@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>d-day 계산기</title>
+
+    <script>
+
+        //ex
+        let sample = new Date(2024, 0, 7); // 1월 7일 00:00 기준
+        console.log(sample);
+        console.log(sample.getTime());
+        let now = new Date();
+        console.log("밀리 세컨드 " + (now.getTime() - sample.getTime()));
+        console.log("초 " + (now.getTime() - sample.getTime()) / 1000);
+        console.log("분 " + (now.getTime() - sample.getTime()) / (1000*60));
+        console.log("시 " + (now.getTime() - sample.getTime()) / (1000*60*60));
+        console.log("날짜 " + (now.getTime() - sample.getTime()) / (1000*60*60*24)); 
+        
+        let userDday = prompt ("D-day를 입력하세요 (형식은 YYYYMMDD)");
+
+        // 1. 문자열의 위치에 알맞게 잘라서 -> 날짜 객체를 생성한다.
+        let year = parseInt(userDday.substring(0, 4));
+        let month = parseInt(userDday.substring(4, 6));
+        let day = parseInt(userDday.substring(6, 8));
+
+        let inputDate = new Date(year, (month-1), day);
+        console.log(inputDate);
+
+        console.log("D-day : " + (now.getTime() - inputDate.getTime()) / (1000*60*60*24));
+        // document.write("<b> D-Day :" + (now.getTime() - inputDate.getTime()) / (1000*60*60*24) + "</b>" );
+
+        // 현재 날짜 가져오기
+        let currentDate = new Date();
+        // 두 날짜 사이의 차이
+        let diff = inputDate.getTime() - currentDate.getTime();
+        // 밀리초를 일 단위로 변환
+        // 코어 객체 Math <-- 수학 관련 처리 메소드를 담고있는 객체
+        // [소수점 버림] ceil 올림, round 반올림, floor 내림
+        let result = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        console.log(result);
+
+        document.write("<h1>입력하신 " + year + ". " + month + ". " + day + ". " + "까지는 " 
+            + result + "일 남았습니다.</h1>" );
+
+        // 다음달의 첫날에서 하루를 빼면 이번달의 마지막 날을 가져올 수 있음.
+        // 1. 다음 달의 첫 날 구하기
+        let nextMonth = new Date(now.getFullYear(), (now.getMonth() + 1), 1);
+        
+        // 2. 다음 달의  첫날에서 하루를 빼서 이번달 마지막 구하기
+        console.log("nextMonth : ", nextMonth);
+        nextMonth.setDate(nextMonth.getDate()-1);
+        console.log("nextMonth-1 : ", nextMonth);        
+        
+        // 3. 마지막날 날짜객체와 현재 날짜객체의 차이를 이용하여
+        // 1월 마지막 날까지의 남은 기간을 계산한다.
+        let lastDay = nextMonth.getTime() - now.getTime();
+        let resultDay = Math.ceil(lastDay / (1000 * 60 * 60 * 24));
+        document.write("<h2> 1월의 마지막 날 까지는 "  + resultDay + "일 남았습니다. </h2>" );
+        
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

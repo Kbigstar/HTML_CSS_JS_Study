@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video 배경</title>
+
+    <style>
+        #bg {
+            position: fixed; /* 고정 */
+            left: 0; top: 0; /* 왼쪽 위쪽 여백 없이 */
+            height: auto;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;            
+        }
+        #menubar {
+            background-color:  blanchedalmond;
+            opacity: 0.4; /* 투명도 */
+        }
+
+        #menubar ul { 
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        #menubar ul li {
+            display: inline;
+            list-style-type: none;
+            padding: 0px 15px;
+        }
+
+        #menubar ul li a{
+            font-size: 30px; 
+            color: white;
+            text-decoration: none;
+        }
+
+        #menubar ul li a:hover {
+            color: black;
+        }
+
+        #menubar ul li a:active {
+            color: blue;
+        }
+
+        #main {
+            color: antiquewhite;
+            position: relative;
+            text-align: center;
+            margin-top: 15%;
+            margin-left: 15%;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+        h1 {
+            font-size: 3.5em;
+        }
+        a:link, a:visited {
+            text-decoration: none;
+            color: blanchedalmond;
+        }
+        /* 커서 변경 */
+        a:hover {cursor: pointer;}
+        
+
+    </style>
+</head>
+<body>
+    
+    <video src="./video/hawaii.mp4" autoplay loop muted id="bg"></video>
+    <div id="menubar">
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">마우이</a></li>
+            <li><a href="#">오하후</a></li>
+            <li><a href="#">라나이</a></li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <h2>하와이</h2>
+        <h1><a href="#">Paradise</a></h1>
+    </div>
+
+</body>
+</html>

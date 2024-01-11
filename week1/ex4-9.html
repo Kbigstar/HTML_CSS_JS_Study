@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h3, li {color: brown;} /*태그 셀렉터*/
+        div > div> strong {background-color: yellow;} /* > <-- 자식 셀렉터 */
+        ul strong {color: dodgerblue;} /*띄어쓰기 자손 셀렉터*/ 
+        .warning {color: red;} /*class 셀렉터*/
+        body.main {background-color: aliceblue;} /*태그+class명 셀렉터*/
+        #list {background-color: mistyrose;} /*id 셀렉터*/
+        /*hover 마우스 올렸을 때(가상 클래스 셀렉터)*/
+        li:hover{background-color: yellowgreen;} 
+        .col {background-color: sandybrown;}
+    </style>
+
+</head>
+<body class="main">
+    <h3>Web Programming</h3>
+    <hr>
+    <div>
+        2일차 <strong>학습내용</strong> 입니다.
+        <ul id="list">
+            <li><span>HTML5</span></li>
+            <li><strong>CSS3</strong></li>
+            <li><span>JavaScript</span></li>
+        </ul>
+        <div class="warning">60점 이하는 F</div>
+
+        <table border="1">
+            <tr><td class="col">1</td><td class="col">2</td></tr>
+            <tr><td>3</td><td>4</td></tr>
+        </table>
+    </div>
+</body>
+</html>

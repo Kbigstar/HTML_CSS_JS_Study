@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션</title>
+
+    <style>
+
+    /* 애니메이션 정의 */
+        @keyframes bomb {
+            0% {font-size: 100%;}
+            50% {font-size: 500%;}
+            100% {font-size: 100%;}
+        }
+        @keyframes colorChange {
+            from {color: blue;}
+            to {color: red;}
+        }
+        h1 {
+            animation-name: bomb;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+        h2 {
+            animation-name: colorChange;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+        p {
+            animation-name: bomb, colorChange; 
+            animation-duration: 10s;
+            animation-iteration-count: 2;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h2>색 변경</h2>
+    <h1>꽝</h1>
+    <hr>
+    <p>글자가 10초 동안 바뀜</p>
+
+</body>
+</html>

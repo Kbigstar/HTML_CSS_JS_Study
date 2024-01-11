@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력 사이즈로 Table 만들기</title>
+</head>
+<body>
+    <h3>사용자의 입력 수만큼 행 X 열 만들기</h3>
+    <hr>
+    <script>
+        let size = prompt("몇 행의 테이블을 그릴까요?");
+        let size2 = prompt("몇 열의 테이블을 그릴까요?");
+        size = parseInt(size);
+        // 입력받은 size 만큼 tr td를 그려서 테이블을 만들어 보세요..^^
+        let str = "<table border='1px solid'>";
+        
+        
+        document.write(str);
+        for(let i = 1; i <= size; i++ ){
+            document.write("<tr>");
+            for(let j = 1; j <= size2; j++){
+                document.write("<td>" + i + "행" + j + "열" + "</td>");
+            }
+            document.write("</tr>");
+        }
+        
+        document.write("</table>");
+        
+    </script>
+    
+    <!-- <table border="1px solid">
+    <tr>
+        <td>1</td><td>1</td><td>1</td>
+    </tr>
+    <tr>
+        <td>1</td><td>1</td><td>1</td>
+    </tr>
+    </table> -->
+
+
+</body>
+</html>

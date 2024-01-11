@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점심메뉴 추천기!!</title>
+</head>
+<body>
+    
+    <h3>선택을 도와드립니다..!!!</h3>
+    <button type="button" id="btn" onclick="fn_stop()"> 선택! </button>
+    
+    <div id ="view"></div>
+
+    <hr>
+
+    <script>
+        let menu = ["정일품", "묵은정", "짬뽕지존", "춘리 마라탕", 
+                    "매일돼지", "다이어트", "귀리 쉐이크", "맥날", "편의점"];
+        
+        function fn_select(){
+            let random_num = Math.floor(Math.random() * menu.length);
+            
+            // random_num 을 이용해서 div에 innerHTML에 메뉴를 출력하시오
+            // 선택 후에 다시 선택! 으로 바꾸기 
+            document.getElementById("view").innerHTML = "<h2> 오늘 점심은 '"+menu[random_num]+"' 입니다!</h2>";
+            // document.getElementById("btn").innerHTML = "다시 선택!";
+        }
+
+        // 반복작업 / 멈추기 위해 변수에 담아서 사용함
+        let intervalID = setInterval(fn_select, 100) // 초
+
+        function fn_stop(){
+            if(intervalID != null){
+                // 멈추기
+                clearInterval(intervalID);
+            }
+        }
+        
+    </script>
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+        <h3>[ ]로 배열 만들기</h3>
+        <hr>
+        <script>
+            // let plots = [50, 5, 8, 15, 20];
+            let plots = new Array(50, 5, 8, 15, 20); // 위와 동일하다.
+            console.log(plots[0]);
+            console.log(typeof(plots));
+            console.log(plots.length);
+            plots.push(100); // 추가
+            console.log(plots);
+
+            // 1. for문
+            for(let i = 0; i < plots.length; i++){
+                let size = plots[i];
+                
+                while(size > 0){
+                    document.write("*");
+                    size--;
+                }
+                document.write(plots[i] + "<br>");
+            }
+
+            // 2. for in문
+            for(let i in plots){
+                console.log(i + " : 번째 = " + plots[i]);
+            }
+
+            // 3. for of 문(Value만 필요할때)
+            for(let v of plots){
+                console.log(v);
+            }
+
+            
+
+
+        </script>
+
+
+
+</body>
+</html>

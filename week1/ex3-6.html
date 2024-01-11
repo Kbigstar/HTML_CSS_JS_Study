@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form 태그 전송 get방식</title>
+</head>
+<body>
+    <!-- action 데이터 전송 url -->
+    <!-- placeholder 가이드 내용 name <-- 데이터 전송 변수명('파라미터'라고 함) -->
+    <form action="https://www.google.com/search" method="get">
+        <input type="text" name="q" placeholder="검색하고 싶은 이미지 단어를 작성하세요.">
+        <input type="password" name="pw">
+        <!-- input의 type submit은 데이터 전송을 의미함. -->
+        <input type="submit" value="이미지 검색">
+    </form>
+</body>
+</html>
