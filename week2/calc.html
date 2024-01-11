@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+
+    <link rel="stylesheet" href="./css/calc.css">
+
+    <script>
+
+        // onload 문서 로드를 완료 했을때 이벤트리스너
+        window.onload = function(){
+
+            // 
+            // window.document.body
+            // root window 객체
+            // 하위에 document가 있으며 그 하위에 body가 있음 (항상)
+            document.body.onkeypress = function(e){
+                console.log(e.key);
+                if(e.key == 'Enter'){
+                    console.log("계산");
+                    
+                    let divId = document.getElementById("view");  
+                    divId.innerHTML += "=" + eval(divId.innerHTML);
+                    
+                    
+                }
+                else{
+                    console.log("화면에 출력");
+                    // 조건 1 ~ 9 or + - 만 화면에 출력
+                    // isNaN은 true/false 문자는 true  숫자는 false 숫자만 하고싶을땐 !isNaN(e.Key) 을 쓰자..
+                    if(!isNaN(e.key) || e.key === '+' || e.key === '-'){
+                        let divId = document.getElementById("view");            
+                        
+                        divId.innerHTML += e.key;
+                    }
+                }
+                
+            }
+        }
+
+
+        function fn_click(obj){
+            // console.log(fn_click(obj)); // ex) 버튼 1 누를시 <button type="button" onclick="fn_click(this)">1</button>
+            let divId = document.getElementById("view");
+
+            let text = obj.innerHTML;
+            if(text == '='){
+                divId.innerHTML += text + eval(divId.innerHTML);
+            }else{
+                divId.innerHTML += text;
+            }
+
+            // document.getElementById("view").innerHTML = fn_click(obj);
+        }
+    </script>
+
+
+</head>
+<body>
+
+    <div class="calculator">
+        <span id="view"></span>
+        <table>
+            <tr>
+                <td><button type="button" onclick="fn_click(this)">1</button></td>
+                <td><button type="button" onclick="fn_click(this)">2</button></td>
+                <td><button type="button" onclick="fn_click(this)">3</button></td>
+                <td><button type="button" onclick="fn_click(this)">+</button></td>
+            </tr>
+
+            <tr>
+                <td><button type="button" onclick="fn_click(this)">4</button></td>
+                <td><button type="button" onclick="fn_click(this)">5</button></td>
+                <td><button type="button" onclick="fn_click(this)">6</button></td>
+                <td><button type="button" onclick="fn_click(this)">-</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="fn_click(this)">7</button></td>
+                <td><button type="button" onclick="fn_click(this)">8</button></td>
+                <td><button type="button" onclick="fn_click(this)">9</button></td>
+                <td><button type="button" onclick="fn_click(this)">=</button></td>
+            </tr>
+            
+        </table>
+    </div>
+
+    
+</body>
+</html>

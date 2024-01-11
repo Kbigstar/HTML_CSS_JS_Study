@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/d-day.css">
+    <title>디데이 계산기</title>
+    <script>
+        let startDate = prompt("처음 만난날을 입력해주세요","2017-08-15");
+        let firstDay = new Date(startDate); // 입력받은 날로 날짜객체 생성
+        let year, month, day;
+
+        let nowDate = new Date();
+    
+        
+        console.log(firstDay);
+
+        function dday(){
+        
+            document.write(Math.abs(Math.floor((firstDay.getTime() - nowDate.getTime()) / (1000*60*60*24))) + "일");
+
+        }
+        
+        function calcDate(days){
+            
+        // -100일과 같은 경우는 firstDay.getTime() - nowDate.getTime()) / (1000*60*60*24) 이런식으로 하면 잘 풀리나
+        // +100일의 시간을 구하는 경우에는 +(days-1) 만큼의 시간을 ms로 더해줘야 해서 아래와 같은 풀이가 나옴
+        let nextDday = new Date(firstDay.getTime() + (days-1) * (1000 * 60 * 60 * 24));
+        console.log(nextDday);
+    
+        year = nextDday.getFullYear();
+        month = nextDday.getMonth()+1;
+        day = nextDday.getDate();
+        
+        
+          document.getElementById("date"+days).innerHTML = year + "년" + month + "월" + day + "일";
+
+
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="day1">
+            <h3>우리 만난지</h3>
+            <p id="accent" class="accent">
+                <script>dday()</script>
+            </p>
+        </div>
+        <div class="bar">기념일 계산</div>
+        <div class="day2">
+            <ul>
+                <li class="item-title">100일</li>
+                <li class="item-date" id="date100">
+                    <script>calcDate(100)</script>
+                </li>
+            </ul>
+            <ul>
+                <li class="item-title">200일</li>
+                <li class="item-date" id="date200">
+                    <script>calcDate(200)</script>
+                </li>
+            </ul>
+            <ul>
+                <li class="item-title">1주년</li>
+                <li class="item-date" id="date365">
+                    <script>calcDate(365)</script>
+                </li>
+            </ul>
+            <ul>
+                <li class="item-title">500일</li>
+                <li class="item-date" id="date500">
+                    <script>calcDate(500)</script>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

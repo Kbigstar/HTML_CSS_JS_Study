@@ -16,8 +16,41 @@
         
         // 2. 익명함수
         //  - 이름이 없는 함수를 뜻하며 익명함수 작성 하위에서만 사용가능
-        
         //  - 변수에 담아 사용가능
+        fn_test(); // 선언문 위
+
+        function fn_test(){
+            console.log("선언적 함수");
+        }
+
+        fn_test(); // 선언문 아래
+    
+        // fn_test2(); //오류남
+        let fn_test2 = function() {
+            console.log("익명함수1");
+        }
+        fn_test2(); // 익명함수를 담은 변수 아래에서 사용가능
+
+        function fn_call(func) {
+
+            console.log(func);
+            for(let i = 0; i < 10; i++){
+                func(); // 매개변수로 전달 받은 함수를 호출 (매번 다른 함수를 받을 수 있음.)
+            }
+
+            // 콜백함수
+            return function(){
+                console.log("콜백함수");
+            }();
+        }
+        
+
+
+        fn_call(fn_test2);
+        fn_call(function(){
+            console.log("익명함수2");
+        });
+       
 
 
     </script>

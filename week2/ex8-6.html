@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태그 이름으로 DOM객체 찾기</title>
+
+    <script>
+        function fn_change(){
+            let spanArr = document.getElementsByTagName("span")
+            console.log(spanArr);
+
+            for(let i = 0; i < spanArr.length; i++){
+                let span = spanArr[i];
+                span.style.color = 'orchid';
+                span.style.fontSize = '20px';
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+
+    <h3>내가 좋아하는 과일</h3>
+    <hr>
+    저는 맛있는 <span>사과를</span> 좋아해서 아침마다 하나씩 먹고 있어요.
+    운동할 때는 중간 중간에 <span>바나나</span>를 먹고있습니다.
+    그리고 <span>딸기</span>를 좋아하지만 비싸서.. 
+    <button type="button" onclick="fn_change()">변경!</button>
+
+    
+    
+</body>
+</html>
