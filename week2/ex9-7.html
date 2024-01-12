@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디폴트 행동 취소</title>
+
+    <script>
+        function check(){
+            let res = confirm("네이버로 이동 하시겠습니까?!");
+            
+            return res;
+        }
+    </script>
+
+
+</head>
+<body>
+
+    <h3>이벤트 디폴트 행동 취소</h3>
+    <hr>
+                                    <!-- 디폴트 행동 취소 1. return false -->
+    <a href="http://www.naver.com" onclick="return false">네이버 이동</a> 
+    <a href="http://www.naver.com" onclick="return check()">네이버 이동2</a>
+
+    <form action="">
+        <input type="checkbox">test1(체크가능) <br>
+                                <!-- 디폴트 행동 취소 2. event.preventDefault() -->
+        <input type="checkbox" onclick="event.preventDefault()">test2(체크안됨) <br>
+    </form>
+
+
+</body>
+</html>

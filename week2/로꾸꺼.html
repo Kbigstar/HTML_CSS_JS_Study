@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로꾸꺼</title>
+</head>
+<body>
+    
+    <h3>텍스트를 입력받아 거꾸로 출력해보세요!</h3>
+    <hr>
+
+    <script>
+
+        // ex
+        let test = "안녕하세요".split(''); // ''는 1글자씩 자름.
+        console.log(test);
+
+        let word = prompt("거꾸로 만들 단어를 입력하세요", "로꾸꺼");
+
+        let word2 = word.split('')
+
+        // 다른방법 같은결과
+        // let reversStr = word.split('').reverse().join(",");
+        // document.write(word + "<h2> 를 거꾸로 하면 : " + word2.reverse() + "</h2>");
+        
+        console.log(word2)
+        //거꾸로 문자열을 만들어 출력하시오 
+        document.write("<h2>" + word + " 를 거꾸로 하면 : " + word2.reverse() + "</h2>"); //join 안쓸시 default ','
+
+
+    </script>
+
+
+</body>
+</html>

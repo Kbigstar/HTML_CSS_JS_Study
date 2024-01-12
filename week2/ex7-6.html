@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String method</title>
+</head>
+<body>
+    <h3>String method</h3>
+    <hr>
+
+    <script>
+
+        let a = "Boys and Girs";
+        // concat == 문자열 + 문자열
+        console.log(a.concat("입니다."));
+        
+        // indexOf
+        console.log("indexof : ", a.indexOf("s"));
+        console.log("indexof : ", a.indexOf("S")); // 없으면 -1 반환
+
+        // slice 인덱스로 가져오기
+        console.log("slice : ", a.slice(5,8));
+
+        // substr 시작 인덱스 부터 길이
+        console.log("substr : ", a.substr(5, 3));
+        
+        let sub = a.split(" "); // 구분자로 잘라서 배열에 담음
+        console.log(sub);
+
+        // replace 바꾸기
+        console.log(a.replace("and", "or"));
+        
+        // upper or lower
+        console.log(a.toUpperCase());
+        console.log(a.toLowerCase());
+
+
+
+    </script>
+
+
+</body>
+</html>

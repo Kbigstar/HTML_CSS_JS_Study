@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title</title>
+
+    <style>
+
+         div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+         }
+
+         strong{
+            color: blue;
+         }
+
+
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Class Mate</h1>
+        <h2 id="array-content" onmouseover="fn_stop()" onmouseout="fn_move()"></h2>
+        <button onclick="fn_select()" >랜덤 선택</button>
+        <h2 id="result" ></h2>
+    </div>
+
+
+    <script>
+        let classmate = ["강성준", "권보성", "권유빈", "김기찬", "김대영", "김동우", "김동현", "김명기", "김영주", "김유정", "김은혜",
+                         "김휘건", "나항진", "문성민", "박진기", "백현진", "오정연", "유하영", "이예진", "이용빈", "정유진"]
+
+        document.getElementById("array-content").innerHTML = "|" + classmate.join("|");
+
+        let move = setInterval(fn_slice, 100);
+        
+
+        
+
+        console.log(randNum);
+            console.log(classmate[randNum]);
+        console.log(classmate.indexOf(randNum));
+
+
+        function fn_stop(){
+                
+                    clearInterval(move);
+            
+        }  
+        
+        function fn_select(){
+            fn_stop();
+
+            let randNum = Math.floor((Math.random() * classmate.length));
+            let item = classmate[randNum]
+
+            let obj = document.getElementById("array-content");
+
+            obj.onmouseover = "";
+            obj.onmouseout = ""; // 이벤트에 따른 이동 삭제
+
+            let text = obj.innerText;
+
+            // 문자열에서 랜덤하게 선택된 학생 찾기
+            let textIdx = text.indexOf(item); // 해당이름 시작위치
+            let first = text.slice(0, textIdx);
+            let last = text.slice(textIdx + 3);
+
+            // first 선택이름 last 
+            let itemCss = "<strong>" + item + "</strong>";
+            obj.innerHTML = first + itemCss + last;
+
+            document.getElementById("result").innerHTML = "당첨자는 : <strong>" + item + "</strong>"
+
+            // document.getElementById("array-content").innerHTML = "<strong>" + item + "</strong>"
+            
+        }
+
+        function fn_move(){
+            move = setInterval(fn_slice, 100);
+            
+
+        }
+        
+        function fn_slice(){
+            let obj = document.getElementById("array-content");
+            let text = obj.innerHTML;
+            let first = text.substr(0,4);
+            let last = text.substr(4); // 4 인덱스 부터 끝
+            obj.innerHTML = last + first;
+        }
+        
+
+    </script>
+</body>
+</html>

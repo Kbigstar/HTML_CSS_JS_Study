@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두더지 게임</title>
+    <style> .game-board { width: 600px; height: 600px; position: relative;}
+            .mole { width: 100px; 
+                    height: 100px; 
+                    position: absolute; 
+    
+                    /* display: none; */
+            }
+            .mole:hover { cursor: pointer;}
+            .mole:active {opacity: 0.5;}
+    </style>
+
+    
+
+    
+</head>
+<body>
+    <h1>점수 : <span id="score">0</span></h1>
+    <h1>남은시간: <span id="time">30</span></h1>
+    <div class="game-board">
+        <img src="./img/두더지.PNG" class="mole" id="mole" alt="" onclick="fn_count()">
+    </div>
+    <script>
+        let randLeft = Math.floor(Math.random() * 1500);
+        let randTop = Math.floor(Math.random() * 500);
+        while(true){
+            document.getElementById('mole').style.left = randLeft+"px";
+            document.getElementById('mole').style.top = randTop +"px";
+            break;
+        }
+        
+        let count = 0;
+        
+        function fn_count(){
+            count += 1;
+            document.getElementById("score").innerHTML = count;
+        }
+
+
+
+    </script>
+</body>
+</html>

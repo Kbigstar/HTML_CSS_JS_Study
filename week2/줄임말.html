@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신조어를 몰라요..</title>
+</head>
+<body>
+    
+    <h3>사용자에게 문장을 입력받아 줄임말을 만들어주세요 ^^</h3>
+    <hr>
+    <!-- 갑자기 분위기 싸함? -> 갑분싸
+         멘탈 붕괴 -> 멘붕
+         띄어쓰기를 기준으로 ^^
+    -->
+
+    <script>
+        let words = prompt("문장을 입력하세요");
+
+        arr = words.split(" ");
+        console.log(arr[0].substr(0,1));
+        console.log(arr[1].substr(0,1));
+        console.log(arr[2].substr(0,1));
+        
+        // let word = [];
+        // for(let i = 0; i < arr.length; i++){
+        //     word = word.concat(arr[i].substr(0,1));
+        // }
+
+        let word = " ";
+        for(let v of arr){
+            word += v[0];
+        }
+            console.log(word);
+
+        document.write(words + "의 줄인말은 : " + word);
+    </script>
+
+
+</body>
+</html>
