@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두더지 게임</title>
+    <style> .game-board { width: 600px; height: 600px; position: relative;}
+            .mole { 
+                width: 100px; 
+                height: 100px;     
+                position: absolute; 
+                display: none;
+            }
+            .mole:hover { cursor: pointer;}
+            .mole:active {opacity: 0.5;}
+    </style>
+</head>
+<body>
+    <h1>점수 : <span id="score">0</span></h1>
+    <h1>남은시간: <span id="time">30</span></h1>
+    <div class="game-board">
+        <img src="./img/두더지.PNG" class="mole" id="mole" alt="">
+    </div>
+    <script>
+
+        let score = 0;      // 게임 점수
+        let time = 30;       // 시간
+        let gameInterval;   // 특정 시간마다 반복 시키기
+
+        let mole = document.getElementById("mole");
+        let spanScore = document.getElementById("score");
+        let spanTime = document.getElementById("time");
+
+        function showMole(){
+            randomPosition(); // display를 none 에서 block으로 변경하기 전에 위치를 변경해주기
+            mole.style.display='block';
+            setTimeout(hideMole, 1000); // 1초뒤 사라지도록
+        }
+
+        gameInterval = setInterval(showMole, 2000); //
+        
+        function hideMole(){
+            mole.style.display='none';
+        }
+
+        function randomPosition(){
+            let x  = Math.floor(Math.random() * 500);
+            let y  = Math.floor(Math.random() * 500);
+
+            mole.style.left = x + "px";
+            // JavaScript ex6 버전 부터 `` 사용가능!
+            mole.style.top = `${y}px`; // x와 y 둘다 같은 결과의 방법
+        }
+        
+        mole.addEventListener('click', function(){
+            score++;
+            spanScore.innerText = score;
+            hideMole(); // 누르면 사라져야 하기에
+        });
+
+        // 시간 감소
+        let timeInterval = setInterval(function(){
+            time--;
+            spanTime.innerText = time;
+            if(time == 0){
+                clearInterval(gameInterval); // 두더지 나타남 중지
+                clearInterval(timeInterval); // 시간 감소 중지
+
+                alert(`게임오버!! 당신의 점수는 ${score}점 입니다.`);
+                location.reload();
+            }
+        }, 1000); // 1초마다
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서의 동적 구성</title>
+
+    <script>
+
+        function fn_create(){
+            let newDiv = document.createElement("div"); // 생성
+            let obj = document.getElementById("parent");
+
+            newDiv.innerHTML = "새로 생성된 div 입니다.  ";
+            newDiv.setAttribute("class", "myDiv");
+            newDiv.style.backgroundColor = "yellow";
+
+            newDiv.ondblclick = function(){
+                // (더블클릭) 이벤트 리스너가 작동 될 때 
+                // 적용한 function 에서의 this는 해당 엘리먼트 자신
+                obj.removeChild(this); 
+            }
+
+            obj.appendChild(newDiv);
+
+            // 버튼 추가
+            let btn = document.createElement("button"); // 버튼 생성
+            btn.innerHTML = "X";
+            btn.onclick = function(){
+                let body = this.parentElement.parentElement; // 부모의 부모
+                let parent_div = this.parentElement // 부모
+                
+                body.removeChild(parent_div); // 조상에서 부모 삭제
+                
+            }
+            newDiv.appendChild(btn);
+        }
+
+        function fn_insert(){
+            let newDiv = document.createElement("div"); // 생성
+            let obj = document.getElementById("parent");
+
+            newDiv.innerHTML = "새로 생성된 div 입니다.  ";
+            
+            obj.insertBefore(newDiv, obj.childNodes[0]) // 하위요소 중 처음위치
+        }
+
+
+    </script>
+
+
+</head>
+<body id="parent">
+    <h3>Div 객체를 동적으로 생성, 삽입, 삭제하는 예제</h3>
+    <hr>
+
+    <!-- href에 javascript 함수 넣는법 -->
+    <a href="javascript:fn_create()">Div 생성</a>
+    <a href="javascript:fn_insert()">0번째에 추가</a>
+
+
+
+
+</body>
+</html>

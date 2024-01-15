@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // fn_change(); 불가능
+
+        // window.onload = function(){ // 가능 (body에서 하는것과 동일함)
+        //     fn_change(); 
+        // }
+
+
+        function fn_change(){
+            let sel = document.getElementById("sel");
+            let img = document.getElementById("myImg");
+
+            img.onload = function(){ // onload 가 없으면 찾지 못함
+                let mySpan = document.getElementById("mySpan");
+                mySpan.innerHTML = img.width + 'x' + img.height;
+            }
+
+            let idx = sel.selectedIndex;
+            img.src = sel.options[idx].value;
+
+        }
+
+
+    </script>
+
+
+</head>
+<body onload="fn_change()"> <!-- 시작부터 이미지를 찾기위해 body에 onload -->
+    
+    <h3>onload로 이미지 크기 출력</h3>
+    <hr>
+    <form action="">
+       
+        <select name="" id="sel" onchange="fn_change()">
+            <option value="./img/1.PNG">외계인2</option>
+            <option value="./img/2.PNG">위시</option>
+            <option value="./img/3.PNG">노량</option>
+            <option value="./img/4.PNG">서울의 봄</option>
+            <option value="./img/5.PNG">인투 더 월드</option>
+        </select>
+        
+        <span id="mySpan">이미지 크기 출력</span>
+    
+    </form>
+    
+    <p><img src="" id="myImg" alt=""></p>
+
+</body>
+</html>

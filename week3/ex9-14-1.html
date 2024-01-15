@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 슬라이드 효과</title>
+    
+    <script>
+        let files =  ["./img/1.PNG", "./img/2.PNG", "./img/3.PNG", "./img/4.PNG", "./img/5.PNG"];
+        let imgs = [];
+
+        let idx = 0;
+        let obj; // 화면 img tag
+
+        for(let i = 0; i < files.length; i++){
+            imgs[i] = new Image(); // 이미지 객체 생성
+            imgs[i].src = files[i]; // 이미지 경로 할당 (load 하도록)
+        }
+
+        window.onload = function(){
+            obj = document.getElementById("img_id");
+            setInterval(fn_right, 1000); // 1초마다 자동으로 fn_right
+        }
+
+        function fn_left(){
+            if(idx == 0){
+                idx = imgs.length-1;
+            }
+            else{
+                idx--;
+            }
+            
+            obj.src = imgs[idx].src;
+        }
+
+        function fn_right(){
+            if(idx == imgs.length-1){
+                idx = 0;
+            }
+            else{
+                idx++;
+            }
+            
+            obj.src = imgs[idx].src;
+        }
+
+    </script>
+
+</head>
+<body>
+    
+    <div>
+        <button id="left" type="button" onclick="fn_left()"><</button>
+        <img src="./img/1.PNG" alt="" id="img_id">
+        <button id="right" type="button" onclick="fn_right()">></button>
+    </div>
+
+
+
+</body>
+</html>

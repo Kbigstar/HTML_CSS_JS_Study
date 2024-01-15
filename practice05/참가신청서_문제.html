@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/nameList.css">
+
+    <script>
+        function fn_register(){
+            let userName = document.getElementById("userName");
+            console.log(userName.value);
+            
+            let obj = document.getElementById("nameList");
+            let newUser = document.createElement("div");
+
+            if(userName.value === ""){
+                alert("이름을 입력해주세요..!!");
+                return;
+            }
+
+            newUser.style.fontSize = "20px";
+            newUser.innerHTML = userName.value;
+
+            let btn = document.createElement("button");
+            btn.innerHTML = "X";
+            btn.style.marginLeft = "300px";
+
+            obj.appendChild(newUser);
+            newUser.appendChild(btn);
+            btn.onclick = function(){
+                let parent_div = this.parentElement.parentElement; // 부모의 부모
+                let child_div = this.parentElement // 부모
+                
+                parent_div.removeChild(child_div); // 조상에서 부모 삭제
+                
+            }
+            
+          console.log(document.getElementById("userName"));
+
+        }
+    </script>
+
+
+</head>
+<body>
+    <div id="container">
+        <h1>참가 신청서</h1>
+        <form id="myForm">
+            <input type="text" id="userName" placeholder="이름을 입력하세요">
+            <button type="button" onclick="fn_register()">신청</button>
+        </form>
+        <hr>
+        <div id="nameList"></div>
+    </div>
+</body>
+</html>
