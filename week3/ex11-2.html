@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캔버스 맛보기</title>
+</head>
+<body>
+    <h3>캔버스 네모</h3>
+    <hr>
+
+    <canvas id="myCanvas" 
+    style="background-color: aliceblue;" width="250px" height="150px"></canvas>
+
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        
+        // 작업 공간
+        let context = canvas.getContext("2d");
+    
+
+        // 네모
+        context.beginPath();
+        context.strokeStyle = 'black'; // 외곽선 색상 default black
+        context.rect(30,30,50,50); // 30, 30 위치에, 50x50 사각형
+        context.stroke() // 외곽선
+
+        context.beginPath();
+        context.fillStyle = 'red'; // 채우기 색상 default black
+        context.rect(80,80,50,50); // 80, 80 위치에, 50x50 사각형
+        context.fill(); // 채워서
+
+        context.beginPath();
+        context.moveTo(120,20); // moveTo 시작점
+        context.lineTo(20, 50);
+        context.lineTo(150, 120);
+        context.lineTo(120, 20);
+        context.strokeStyle = 'magenta';
+        context.stroke();
+    </script>
+    
+</body>
+</html>

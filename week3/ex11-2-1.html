@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+
+    <style>
+        body {margin: 0; left: 0; background-color: lightblue;}
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="420px" height="420px" style="background-color: white; margin: 20px;" onclick="fn_fill(event)"></canvas>    <button onclick="fn_draw()">격자 그리기</button>
+    <script>
+        let w = 400;
+        let h = 400;
+        let p = 10;
+
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
+        let arr = [];
+        let idx = 0;
+
+        context.beginPath();
+        function fn_draw(){
+        
+        for(let i = 0; i <= w; i+=40){
+            context.moveTo(p+i, p );
+            context.lineTo(p+i, p+w);
+        
+            context.strokeStyle ='black';
+            context.stroke();
+            arr[idx] = p+i; 
+            idx++;
+            console.log(arr);
+            
+            
+        }
+
+        let arr2 = [];
+        let idx2 = 0;
+
+        for(let j = 0; j <= h; j+=40){
+            context.moveTo(p, p+j);
+            context.lineTo(w+p, p+j);
+            
+            context.strokeStyle ='black';
+            context.stroke();
+
+        }
+
+        
+        }
+
+        let bombX = Math.floor(Math.random()*10);
+        let bombY = Math.floor(Math.random()*10);
+
+        function fn_fill(event){
+            let x = event.offsetX;
+            let y = event.offsetY;
+            
+            console.log("x : " + x);
+            console.log("y : " + y);
+
+            context.fillStyle = 'red';
+            
+            let fillX, fillY;
+
+            for(let i = 0; i < arr.length; i++){
+                
+                if(x >= arr[i] && x < arr[i+1])
+                {
+                    fillX = arr[i];
+                    
+                }
+                if(y >= arr[i] && y < arr[i+1])
+                {
+                    fillY = arr[i];
+                }
+            }
+            console.log(bombX);
+            console.log(arr[bombX]);
+            console.log(arr[bombY]);
+            if(fillX == arr[bombX] && fillY == arr[bombY]){
+                alert("펑!!!!!!");
+            }
+
+            context.rect(fillX,fillY,40,40);
+            context.fill();
+            
+            
+        }
+
+
+    </script>
+    
+</body>
+</html>

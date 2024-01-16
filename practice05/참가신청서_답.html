@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/nameList.css">
+
+</head>
+<body>
+    <div id="container">
+        <h1>참가 신청서</h1>
+        <form id="myForm" >
+            <input type="text" id="userName" placeholder="이름을 입력하세요" required>
+            <button type="button" onclick="fn_register()">신청</button>
+        </form>
+        <hr>
+        <div id="nameList"></div>
+    </div>
+
+    <script>
+        document.getElementById("myForm").addEventListener('keypress', function(e){
+            if(e.key === "Enter"){
+                e.preventDefault(); // 디폴드 행동 취소
+                fn_register();
+            }
+        });
+        function fn_register(){
+            let userNm = document.getElementById("userName");
+            // p태그
+            let newP = document.createElement("p");
+            newP.innerHTML = userNm.value; // 사용자가 입력한 input tag의 value
+            userNm.value = "";
+            
+            //삭제버튼 추가
+            let delBtn = document.createElement("span");
+            delBtn.innerHTML = "X";
+            delBtn.setAttribute("class", "del"); // 속성추가
+            delBtn.addEventListener("click", function(){
+                this.parentElement.parentElement.removeChild(this.parentElement);
+            })
+            newP.appendChild(delBtn);
+
+            let nameList = document.getElementById("nameList");
+            // 0 번째에 삽입
+            nameList.insertBefore(newP,nameList.childNodes[0]);
+        }
+    </script>
+
+
+</body>
+</html>
