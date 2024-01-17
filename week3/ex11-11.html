@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그림판</title>
+
+    <style>
+        canvas { cursor: url(d.cur), auto;}
+    </style>
+</head>
+<body onload="init()">
+    
+    <h3>마우스를 누른채 드래깅하여 그림을 그려요</h3>
+    <hr>
+    
+    <canvas id="myCanvas" width="400px" height="400px" 
+            style="background-color: aliceblue;">
+    </canvas>
+
+    <div>
+        <table>
+            <tr>
+                <td>컬러</td><td><input type="color" id="p_color" onchange="fn_change(this)"></td>
+            </tr>
+            <tr>
+                <td>사이즈</td><td><input type="range" id="p_size"  min="1" max="30" value="1" onchange="fn_change(this)"></td>
+            </tr>
+            <tr>
+                <td>
+                    그림 <input type="radio" name="tool" value="P" checked onchange="fn_change(this)">
+                    지우개 <input type="radio" name="tool" value="E" onchange="fn_change(this)">
+                </td>
+                <td><button onclick="fn_clear()">전체 삭제</button> <button onclick="fn_save()">저장 하기</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let canvas, context;
+        let startX = 0, startY = 0;
+        let dragging = false;
+
+        let tools = 'B'; // B 그림, E 지우개
+        function init(){
+            canvas = document.getElementById("myCanvas");
+            context = canvas.getContext("2d");
+            context.lineCap = 'round';
+            context.strokeStyle = 'black';
+            context.lineWidth = 2;
+            canvas.addEventListener('mousedown', down);
+            canvas.addEventListener('mouseup', up);
+            canvas.addEventListener('mousemove', move);
+            canvas.addEventListener('mouseout', out);
+
+        }
+
+        function down(e){
+            startX = e.offsetX;
+            startY = e.offsetY; // 클릭 하여 움직임을 시작하는 위치
+            dragging = true;
+        }
+
+        function up(e){
+            dragging = false; // 움직여도 더이상 그려지지 않도록
+
+        }
+        
+        function out(e){
+            dragging = false; // 아웃 이면 그려지지 않도록
+        }
+
+        function move(e){
+            if(!dragging){
+                return; // 함수 종료
+            }
+            let curX = e.offsetX;
+            let curY = e.offsetY;
+
+            draw(curX,curY);
+            startX = curX;
+            startY = curY;
+        }
+        
+        
+        function draw(curX, curY){
+            if(tools == 'E'){
+                context.clearRect(curX, curY, context.lineWidth, 30);
+            }
+            else{
+                context.beginPath();
+                context.moveTo(startX, startY);
+                context.lineTo(curX,curY);
+                context.stroke();
+            }
+            
+        }
+
+
+        function fn_clear(){ // 전체 삭제 (지우기)
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function fn_change(obj){
+            if(obj.id == 'p_color'){
+                context.strokeStyle = obj.value;
+            }
+            else if(obj.id == 'p_size'){
+                context.lineWidth = obj.value;
+            }
+            else if(obj.name == 'tool'){
+                tools = obj.value;
+                if(tools == 'E'){
+                    canvas.style.cursor = 'url(e.cur), auto';
+                }
+                else{
+                    canvas.style.cursor = 'url(d.cur), auto';
+                }
+            }
+
+        }
+
+        function fn_save(){ // 저장하기 a태그 기능 적용
+
+            // 임시 캔버스 생성
+            let tempCanvas =  document.createElement("canvas");
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+
+            // 임시 캔버스에 배경색 채우기
+            let tempContext = tempCanvas.getContext("2d");
+            tempContext.fillStyle = "aliceblue";
+            tempContext.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+            // 원본 내용 복사
+            tempContext.drawImage(canvas, 0, 0);
+
+            // 임시 캔버스가 없으면 그린 그림만 저장 하여
+            // 임시 캔버스로 배경색을 만들어 주고 
+            // 해당 그림을 복제하여 저장할 수 있도록 함.
+            // let img = canvas.toDataURL("image/png").replace('image/png', 'image/octet-stream');
+
+            let img = tempCanvas.toDataURL("image/png").replace('image/png', 'image/octet-stream');
+            let temp = document.createElement('a');
+            temp.download = 'my-canvas.png';
+            temp.href = img;
+            temp.click();
+        }
+    </script>
+
+</body>
+</html>
