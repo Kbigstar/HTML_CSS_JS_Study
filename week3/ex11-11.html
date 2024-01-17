@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>
-                    그림 <input type="radio" name="tool" value="P" checked onchange="fn_change(this)">
+                    그림 <input type="radio" name="tool" value="D" checked onchange="fn_change(this)">
                     지우개 <input type="radio" name="tool" value="E" onchange="fn_change(this)">
                 </td>
                 <td><button onclick="fn_clear()">전체 삭제</button> <button onclick="fn_save()">저장 하기</button></td>
@@ -41,7 +41,7 @@
         let startX = 0, startY = 0;
         let dragging = false;
 
-        let tools = 'B'; // B 그림, E 지우개
+        let tools = 'D'; // D 그림, E 지우개
         function init(){
             canvas = document.getElementById("myCanvas");
             context = canvas.getContext("2d");
@@ -129,7 +129,7 @@
 
             // 임시 캔버스에 배경색 채우기
             let tempContext = tempCanvas.getContext("2d");
-            tempContext.fillStyle = "aliceblue";
+            tempContext.fillStyle = "aliceblue"; 
             tempContext.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
 
             // 원본 내용 복사
