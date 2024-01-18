@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object</title>
+</head>
+<body>
+    
+    <script>
+        // 객체 선언
+        // let place01 = new Object();
+        let place01 = {}; // 위와 동일함.
+        place01.name = '갤러리아백화점 타임월드점';
+        place01.addr = '대전광역시 서구 둔산동 대덕대로 211';
+        place01.hp = '042-480-5000';
+        place01.check = function(){
+            alert("입장!");
+        }
+
+        place01.check2 = fn_check;
+        function fn_check(){
+            console.log("ㅎㅇ");
+        }
+
+
+        console.log(place01);
+        console.log(typeof(place01));
+
+        // 객체의 속성정보 .속성명, 객체의 메소드 사용 .메소드명()
+        place01.check();
+        place01.check2();
+        
+        // 선언 & 초기값
+        let place02 = {
+            name : "우리집"
+            ,"addr": "배재로1234" // 식별자 or "" 를 써도 상관없음.
+            , hp : "1234"
+            , test : [1, 2, "3"]
+            , go : function(){
+                // 객체에서 this는 객체 자신을 의미함.
+                console.log(this.name + " 가자");
+            }
+        }
+        console.log(place02.name);
+        console.log(place02['hp']); // 위와 동일하나.. 
+        // 동적으로 객체 속성정보가 바뀔수 있다면 45번과 같이 [] <- 사용
+        
+        for(let k in place02){
+            console.log("key", k);
+            console.log("value", place02[k]);
+        }
+        
+        let keyArr = Object.keys(place02); // 객체의 속성명만 가져오기
+        console.log(keyArr);
+
+        for(let i = 0; i < keyArr.length; i++){
+            console.log(place02[keyArr[i]]);
+            
+        }
+        console.log(place02[keyArr[0]]);
+        
+        place02.go();
+
+    </script>
+
+
+
+</body>
+</html>

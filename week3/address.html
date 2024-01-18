@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- daum 주소 찾기 api 활용 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function fn_search(){
+            new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                console.log(data);
+                console.log(data.jibunAddress);
+
+                document.getElementById("addr").value = data.address;
+                document.getElementById("zone").value = data.zonecode;
+                }
+            }).open();
+        }
+        
+</script>
+
+</head>
+<body>
+    
+    주소 : <input type="text" id="addr" size="50">
+    <button type="button" onclick="fn_search()">주소 찾기</button> <br>
+    우편 번호 : <input type="text" id="zone">
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        #container {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        #center {  
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        form > * { 
+            margin: 10px 0; 
+            text-align: center; 
+        }
+        fieldset { 
+            width: 300px; 
+            margin: 0; 
+            padding: 10px; 
+        }
+    </style>
+    <title>ATM기</title>
+</head>
+<body>
+    <div id="container">
+        <div id="center">
+            <img src="./img/ATM.JPG" alt="">
+            <form action="#">
+                <p><label for="">계좌:</label><input type="text" id="acc"></p>
+                <p><label for="">비번:</label><input type="password" id="pw"></p>
+                <p><label for="">금액:</label><input type="text" id="amount"></p>
+                <fieldset id="func">
+                    <legend>ATM 기능</legend>
+                    <input type="button" value="입금" onclick="fn_deposit()">
+                    <input type="button" value="출금" onclick="fn_withdraw()">
+                    <button type="button" onclick="fn_inquiry()">조회</button>
+                    <input type="reset" value="종료" onclick="fn_er()">
+                </fieldset>
+                <fieldset id="content">
+                    <legend>내용</legend>
+                    
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script>
+        let accountArr = [];
+        let content = document.getElementById("content");
+        let current_idx;
+        
+        
+
+        let obj_user = { 
+            account : "12345",
+            pw : "1234",
+            user : "팽수",
+            balance : 10000
+        };
+        accountArr.push(obj_user);
+        accountArr[1] = { 
+            account : "1111",
+            pw : "1111",
+            user : "길동",
+            balance : 10
+        };
+
+        
+        let acc, pw, amount;
+
+        // 조회
+        function fn_inquiry(){
+            // 입력 계좌번호, 입력 패스워드 가져와서
+            // 객체의 계좌, 입력이 맞을경우 화면에 출력
+            // 없다면 계좌 정보는 없습니다. 출력
+            // 화면 출력은 content에 p태그를 만들어서 넣어주기
+            
+            
+            
+            acc = document.getElementById("acc").value;
+            pw = document.getElementById("pw").value;
+            amount = document.getElementById("amount").value;
+
+
+
+            
+            console.log(acc);
+
+            for(let i in accountArr){
+                console.log(accountArr[i]);
+                if(acc == accountArr[i].account){
+                    if(pw == accountArr[i].pw){
+                        content.innerHTML = "<p>"+accountArr[i].user+"님 환영합니다 </p>" 
+                    }
+                }
+                else{
+                    content.innerHTML = "<p> 계좌정보가 없습니다 </p>" 
+                }
+            }
+
+
+
+        }
+
+        //입금
+        function fn_deposit(){     
+
+        }
+
+        //출금
+        function fn_withdraw(){
+
+        }
+
+        //종료
+        function fn_er(){
+
+        }
+    </script>
+</body>
+</html>

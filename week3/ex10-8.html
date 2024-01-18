@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        #logoDiv{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <script>
+
+        function hideLogo(){
+            let logo = document.getElementById("logoDiv");
+            logo.style.display = 'none';
+            logo.style.zIndex = -1;
+        }
+        window.onafterprint = hideLogo;
+        window.onbeforeprint = function(){
+            let logo = document.getElementById("logoDiv");
+            logo.style.display = 'block';
+        }
+
+    </script>
+
+
+</head>
+<body>
+    <h3>onbeforeprint, onafterprint 이벤트</h3>
+    <hr>
+
+    <div id="logoDiv">
+        <img src="../week1/img/apple.PNG" alt="">
+    </div>
+</body>
+</html>
