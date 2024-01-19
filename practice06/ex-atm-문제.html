@@ -41,7 +41,7 @@
             <form action="#">
                 <p><label for="">계좌:</label><input type="text" id="acc"></p>
                 <p><label for="">비번:</label><input type="password" id="pw"></p>
-                <p><label for="">금액:</label><input type="text" id="amount"></p>
+                <p><label for="">금액:</label><input type="number" id="amount"></p>
                 <fieldset id="func">
                     <legend>ATM 기능</legend>
                     <input type="button" value="입금" onclick="fn_deposit()">
@@ -59,7 +59,7 @@
     <script>
         let accountArr = [];
         let content = document.getElementById("content");
-        let current_idx;
+            let current_idx;
         
         
 
@@ -79,6 +79,8 @@
 
         
         let acc, pw, amount;
+        let index = 0;
+        let login;
 
         // 조회
         function fn_inquiry(){
@@ -89,26 +91,32 @@
             
             
             
-            acc = document.getElementById("acc").value;
-            pw = document.getElementById("pw").value;
-            amount = document.getElementById("amount").value;
+            acc = document.getElementById("acc").value.trim();
+            pw = document.getElementById("pw").value.trim();
+            amount = document.getElementById("amount").value.trim();
 
 
 
             
             console.log(acc);
-
+            
+            
             for(let i in accountArr){
                 console.log(accountArr[i]);
-                if(acc == accountArr[i].account){
-                    if(pw == accountArr[i].pw){
-                        content.innerHTML = "<p>"+accountArr[i].user+"님 환영합니다 </p>" 
-                    }
-                }
-                else{
-                    content.innerHTML = "<p> 계좌정보가 없습니다 </p>" 
+                if(acc == accountArr[i].account && pw == accountArr[i].pw){
+                    login = true;
+                    index = i;
+                    console.log(index);
+                    console.log(i);
+                    content.innerHTML = "<p>"+accountArr[i].user+"님 환영합니다 </p>"
+                                        + "<p>잔액 : " +  accountArr[i].balance + "원</p>"; 
+                        break;
+                } else{
+                    login = false;
+                    content.innerHTML = "<p> 계좌정보가 없습니다 </p>" ;
                 }
             }
+            
 
 
 
@@ -116,7 +124,7 @@
 
         //입금
         function fn_deposit(){     
-
+          
         }
 
         //출금
