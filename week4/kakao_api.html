@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다음 검색</title>
+</head>
+<body>
+    <input type="text" id="query" placeholder="검색어">
+    <button type="button" onclick="search()">검색</button>
+
+    <div id="result">
+        <table id="tbl"></table>
+    </div>
+
+    <script>
+
+        function search(){
+            
+            let input = document.getElementById("query");
+            let query = input.value;
+            let encoding_query = encodeURIComponent(query);
+            input.value = '';
+            let url = "https://dapi.kakao.com/v2/search/web?sort=accuracy&page=1&size=10&query=" 
+                        + encoding_query;
+
+            var ajax = new XMLHttpRequest();
+            
+            ajax.open('GET', url, true);
+            
+            ajax.setRequestHeader('Authorization', 'KakaoAK 7e06357383db6bc21b5b52d0ff59c8a3'); //본인 rest apikey
+            ajax.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+            ajax.onreadystatechange = function(){
+                if(ajax.readyState == 4 && ajax.status == 200){
+                    console.log(ajax.responseText);
+                }
+            }
+            
+            ajax.send();
+        }
+
+
+    </script>
+
+
+</body>
+</html>

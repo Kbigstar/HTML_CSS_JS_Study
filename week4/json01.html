@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 데이터</title>
+</head>
+<body>
+    
+    <script>
+        
+        // JavaScript Obeject Notation
+        // 통신간에 데이터 교환 수단으로 널리 사용되고 있음
+        // 숫자, 문자열, 불리언, 배열, 객체를 표현할 수 있음.
+        let data = '{ "name" : "팽수", "age" : 10, "hobby" : ["참치먹기", "노래", "춤"] }';
+        console.log(data);
+
+        // 문자열 to 객체
+        let obj = JSON.parse(data);
+        console.log(obj);
+
+
+        // 객체 to 문자열
+        obj['USE_YN'] = true;
+        let str = JSON.stringify(obj);
+        console.log(str);
+
+    </script>
+
+
+
+</body>
+</html>

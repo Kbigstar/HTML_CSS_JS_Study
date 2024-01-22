@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기 방식으로 요청 후 json 데이터 받기</title>
+
+    <style>
+        html, body { 
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #left_div {
+            float: left;
+            text-align: center;
+            height: 800px;
+            width: 45%;
+            overflow: scroll;
+        }
+
+        
+        #right_div {
+            float: right;
+            text-align: center;
+            height: 800px;
+            width: 45%;
+            overflow: scroll;
+        }
+        table tr:hover{
+            background-color:  cadetblue;
+        }
+    </style>
+
+
+
+    <script>
+        let url = "https://api.upbit.com/v1/market/all"; // 업비트 REST API URL
+        let detail_url = "https://api.upbit.com/v1/ticker?markets="; // 업비트 REST API URL
+        let ajax = new XMLHttpRequest(); // 비동기 통신을 지원하는 객체
+
+        function fn_get(code, func){
+            if(code == ''){
+                ajax.open("GET", url, true);
+            }
+            else{
+                ajax.open("GET", detail_url + code, true);
+            }
+            ajax.onreadystatechange = func;
+            ajax.send(); // 요청
+        }
+
+        fn_get('', main);
+        // fn_get('KRW-BTC', detail);
+
+        function main(){
+            console.log("main");
+            if(ajax.readyState == 4 && ajax.status == 200){
+                console.log(ajax.responseText); // 응답 문자열
+                let arr = JSON.parse(ajax.responseText);
+                console.log(typeof(arr));
+
+                let str = '';
+
+                for(let i = 0; i < arr.length; i++){
+                    console.log(arr[i]['market']);
+                    
+                    str += '<tr onclick="fn_get(\''+arr[i]['market']+'\', detail)">'; 
+                    
+                    str += '<td>' + arr[i]['market'] + '</td>';
+                    str += '<td>' +  arr[i]['korean_name'] + '</td>';
+                    str += '<td>' +  arr[i]['english_name'] + '</td>';
+                    str += '</tr>';
+                }
+                document.getElementById('all_table').innerHTML = str;
+            }
+        }
+
+        function detail(){
+            console.log("detail");
+            if(ajax.readyState == 4 && ajax.status == 200){
+                console.log(ajax.responseText); // 응답 문자열
+
+                let arr = JSON.parse(ajax.responseText); 
+                // [] 0번지 에서 키와 밸류로 나뉘어져 있음..
+                let obj = arr[0]; // 대괄호 안의 0 번지에 있기때문에 
+                console.log(arr);
+                console.log(obj);
+                
+          
+
+                let str = '';
+                
+                for(let key in obj){
+                    // console.log (key);
+                    // console.log(obj[key]);
+                                   
+                    str += '<tr>'; 
+                    str += '<td>' +  key + '</td>'; // key
+                    str += '<td>' +  obj[key] + '</td>'; // value
+                    str += '</tr>';
+                }
+                document.getElementById('detail_table').innerHTML = str;
+            }
+        }
+        
+    </script>
+
+</head>
+<body>
+    <button type="button">요청!</button>
+    
+    <div class = "row">
+        <div id="left_div">
+            <table id="all_table">
+                
+            </table>
+        </div>
+        <div id="right_div">
+            <table id="detail_table">
+                
+            </table>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

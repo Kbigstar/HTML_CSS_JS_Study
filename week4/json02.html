@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기 방식으로 요청 후 json 데이터 받기</title>
+
+    <style>
+        html, body { 
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #left_div {
+            float: left;
+            height: 800px;
+            width: 45%;
+            overflow: scroll;
+        }
+        table tr:hover{
+            background-color:  cadetblue;
+        }
+    </style>
+
+
+
+    <script>
+        let url = "https://api.upbit.com/v1/market/all"; // 업비트 REST API URL
+        let ajax = new XMLHttpRequest(); // 비동기 통신을 지원하는 객체
+
+        function fn_get(){
+            ajax.open("GET", url, true);
+            ajax.send(); // 요청
+        }
+
+        
+
+        ajax.onreadystatechange = function(){
+            console.log(ajax);
+            // 통신 객체로 요청 후 응답이 오면 onreadystatechange() 이벤트 리스너 동작
+            // 4 : 데이터를 리턴 받았을 때 / 200 : HTTP 정상 응답
+            if(ajax.readyState == 4 && ajax.status == 200){
+                console.log(ajax.responseText); // 응답 문자열
+                let arr = JSON.parse(ajax.responseText);
+                console.log(typeof(arr));
+
+                let str = '';
+
+                for(let i = 0; i < arr.length; i++){
+                    console.log(arr[i]['market']);
+                    // tr 생성시에 직접 onclick 에 alert으로 마켓 이름 띄우기를 넣는법
+                    // alert(\''+arr[i]['market']+'\') 이런식으로 써주지 않으면 오류 발생
+                    str += '<tr onclick="alert(\''+arr[i]['market']+'\')">'; 
+                    // str += '<tr>';
+                    str += '<td>' + arr[i]['market'] + '</td>';
+                    str += '<td>' +  arr[i]['korean_name'] + '</td>';
+                    str += '<td>' +  arr[i]['english_name'] + '</td>';
+                    str += '</tr>';
+                }
+                document.getElementById('all_table').innerHTML = str;
+            }
+
+            // 생성 후에 alert으로 마켓 이름을 띄우는법
+            // let trs = document.getElementsByTagName('tr');
+            // for(let i = 0; i < trs.length; i++){
+            //     trs[i].addEventListener('click', function(e){
+            //         console.log(e.target);
+            //         console.log(this);
+            //         console.log(this.children[0].innerHTML);
+            //         alert(this.children[0].innerHTML);
+            //     });
+            // }
+        }
+        
+    </script>
+
+</head>
+<body>
+    <button type="button" onclick="fn_get()">요청!</button>
+    
+    <div class = "row">
+        <div id="left_div">
+            <table id="all_table">
+                
+            </table>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

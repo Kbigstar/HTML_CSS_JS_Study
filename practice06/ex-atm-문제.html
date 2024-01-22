@@ -110,7 +110,7 @@
                     console.log(i);
                     content.innerHTML = "<p>"+accountArr[i].user+"님 환영합니다 </p>"
                                         + "<p>잔액 : " +  accountArr[i].balance + "원</p>"; 
-                        break;
+                        break; // 멈춰주지 않으면 0번지를 찾아오지 못함..
                 } else{
                     login = false;
                     content.innerHTML = "<p> 계좌정보가 없습니다 </p>" ;
