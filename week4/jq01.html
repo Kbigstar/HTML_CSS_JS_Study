@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <!-- <script src="jquery-3.7.1.js"></script> -->
+    <title>Document</title>
+    <script>
+        // jquery는 $ or jQuery 라는 식별자로 사용가능
+        // jquery는 기본적으로 선택되어진 (selector 사용)기본으로 시작하기 때문에
+        // $(document).ready(function() { 작업내용 }); 표현을 사용함
+        $(document).ready(function(){
+            // document가 onload 되어진 뒤에 작업하도록
+            $("h2").click(function(){
+                $(this).hide(); // 여기서 this는 click 되어진 엘리먼트
+            });
+            $("h1").click(function(){
+                $("h2").show();
+            });
+
+            let i = 0;
+            $("div.out").mouseover(function(){
+                $("p:first").text("mouse over");
+                $("p:last").text(++i);
+            });
+            $("div.out").mouseout(function(){
+                $("p:first").text("mouse out");
+            })
+
+            $("input").focus(function(){
+                $(this).css("background-color", "yellow");
+            });
+            $("input").blur(function(){
+                $(this).css("background-color", "white");
+            });
+
+            $("input").keyup(function(){
+                // # 아이디 셀렉터
+                let text = $("#content").text();
+                //  input 엘리먼트에는 value 속성이 있음
+                // value에 접근 val() <-- 가져올때, val(변경값) <-- 넣어줄때
+                $("#content").text(text + $(this).val());
+                $(this).val('');
+            });
+        })
+    </script>
+</head>
+<body>
+    
+    <h2>h2 입니다.</h2>
+    <h1>h1 입니다.</h1>
+
+    <div class="out">
+        <p>마우스를 여기로 움직이세요</p>
+        <p>0</p>
+    </div>
+    아이디 : <input type="text">
+    <div id="content"></div>
+
+
+</body>
+</html>

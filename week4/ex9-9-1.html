@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 흐름 style 적용</title>
+    <style>
+        #menu li.active {color: red;}
+    </style>
+</head>
+<body>
+    
+    <ul id="menu">
+        <li id="item1">Item1</li>
+        <li id="item2">Item2</li>
+        <li id="item3">Item3</li>
+    </ul>
+
+    <script>
+        let menu = document.getElementById("menu");
+        menu.addEventListener('click', function(e){
+            let items = document.getElementsByTagName("li");
+
+            for(let i = 0; i < items.length; i++){
+                items[i].classList.remove('active');
+            }
+
+            //  모든 아이템 class명 active 제거
+        }, true); // 캡처단계
+
+        menu.addEventListener('click', function(e){
+            if(e.target.tagName === 'LI'){
+                // 클릭된  LI 엘리먼트만 class명 active 추가
+                e.target.classList.add('active');
+            }
+        }); // 버블단계
+
+
+    </script>
+
+</body>
+</html>
+

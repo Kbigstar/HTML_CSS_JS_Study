@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=0, initial-scale=1.0">
+    <title>애니메이션과 메소드 체이닝</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                $("#puppy").animate({left:'100px'}, "fast"); // fast <-- 빠르게 움직임
+            });
+            $("#btn").dblclick(function(){
+                $("#puppy").animate({left:'0px'}, "slow"); // slow <-- 느리게 움직임
+            })
+            
+            $("#fadeIn").click(function(){
+                $("#banana").fadeIn('slow');
+            });
+            $("#fadeOut").click(function(){
+                $("#banana").fadeOut('fast');
+            });
+
+            $("#all").click(function(){
+                // 메소드를 연결 연결해서 사용가능 하다.
+                // slideDown() 작업 후 -> fadeIn() 작업 후 -> fadeOut()
+                $("#banana").slideDown('fast').fadeIn('slow').fadeOut('slow');
+            });
+
+            $("#btn2").click(function(){
+                // 속성 접근
+                alert($("#puppy").attr("src"));
+                //수정
+                $("#puppy").attr("src","../practice04/img/두더지.PNG")
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <button id="btn">animate()</button>
+    <button id="btn2">get attr()</button><br>
+    <button id="fadeIn">fade in</button>
+    <button id="fadeOut">fade out</button>
+    <button id="all">all</button><br>
+    <img src="../week2/images/puppy.png" id="puppy" width="80", height="80" style="position: relative;">
+    <img src="../week1/img/banana.PNG" id="banana" width="80", height="80" style="position: relative;">
+
+</body>
+</html>

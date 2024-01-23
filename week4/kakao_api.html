@@ -8,7 +8,7 @@
 <body>
     <input type="text" id="query" placeholder="검색어">
     <button type="button" onclick="search()">검색</button>
-
+    
     <div id="result">
         <table id="tbl"></table>
     </div>
@@ -33,7 +33,21 @@
 
             ajax.onreadystatechange = function(){
                 if(ajax.readyState == 4 && ajax.status == 200){
-                    console.log(ajax.responseText);
+                    let obj = JSON.parse(ajax.responseText);
+                    console.log(obj);
+                    let arr = obj.documents;
+                    let str = "";
+
+                    for(let i = 0; i < arr.length; i++){
+                        console.log(arr[i]);
+                        console.log(arr[i]['url']);
+
+                        str += "<tr>";
+                        str += "<td>" + "<a href='" + arr[i]['url'] +"'>" + arr[i]['title'] + "</a>" + "</td>";
+                        str += "<td>" + arr[i]['contents'] + "</td>";
+                        str += "</tr>";
+                    }
+                    document.getElementById("tbl").innerHTML = str;
                 }
             }
             

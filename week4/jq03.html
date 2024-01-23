@@ -1,0 +1,59 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추가 / 삭제</title>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function(){
+                // append 자식요소 마지막에 붙이기
+                $("#content").append("<b> you </b>"); 
+            })
+            
+            $("#btn2").click(function(){
+                // prepend 앞에 
+                $("#content").prepend("<b> hi </b>"); 
+            });
+            
+            $("#btn3").click(function(){
+                // 비우기 비워도 append prepend 사용가능
+                $("#content").empty();
+            });
+            
+            $("#btn4").click(function(){
+                // 삭제 append prepend 까지 모두 삭제
+                $("#content").remove();
+            });
+
+            $("#btn5").click(function(){
+                // 앞에 (형제요소)
+                $("#content").before("<div>before</div>");
+            });
+                // 뒤에
+            $("#btn6").click(function(){
+                $("#content").after("<div>after</div>");
+            });
+
+            $("#btn7").click(function(){
+                $("#content").wrap("<div style='background-color: red;'></div>");
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id="content"">
+        <p>I would like to say .. :</p>
+    </div>
+    <button id="btn1">append()</button>
+    <button id="btn2">prepend()</button>
+    <button id="btn3">empty()</button>
+    <button id="btn4">remove()</button>
+    <button id="btn5">before()</button>
+    <button id="btn6">after()</button>
+    <button id="btn7">wrap()</button>
+</body>
+</html>

@@ -1,0 +1,56 @@
+.ag-basic .ag-cell {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+label {
+    font-weight: normal !important;
+}
+
+.div-percent-bar {
+    display: inline-block;
+    height: 100%;
+    position: absolute;
+}
+
+.div-percent-value {
+    position: absolute;
+    padding-left: 4px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.div-outer-div {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.bold-row {
+    font-weight: bold;
+}
+.ag-theme-balham .ag-header-cell, .ag-theme-balham .ag-header-group-cell {
+    line-height: 32px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+.ag-cell-label-container{
+    height: 100%;
+}
+
+.ag-theme-balham .ag-header-group-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    margin-top:8px;
+}
+.ag-header-cell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    margin-top:10px;
+}
