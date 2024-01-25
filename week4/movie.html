@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+
+        let key = ''; // 영화진흥위원회 서비스 key
+        let api_Url = 'http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json';
+
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                let st = $("#st").val().replaceAll('-','');
+                console.log(st);
+                let str = '';
+                $.ajax({
+                    url : api_Url
+                    ,data : {key : key, targetDt : st}
+                    ,type : "GET"
+                    , dataType : "JSON"
+                    , success : function(res){
+                        console.log(res);
+                        let arr = res ['boxOfficeResult']['dailyBoxOfficeList'];
+                        $.each(arr, function(i, v){
+                            console.log(v['movieNm']);
+                            str += '<tr>'
+                                str += '<td>' + v['rank'] + '<td>'
+                                str += '<td>' + v['movieNm'] + '<td>'
+                                str += '<td>' + v['openDt'] + '<td>'
+                                str += '<td>' + v['salesAmt'] + '<td>'
+                                str += '<td>' + v['salesAcc'] + '<td>'
+                                str += '<td>' + v['audiCnt'] + '<td>'
+                                str += '<td>' + v['audiAcc'] + '<td>'
+                                str += '<td>' + v['scrnCnt'] + '<td>'
+                                str += '</tr>'
+                        });
+                        $("#tb1").append(str);
+                    }
+                    , error : function(e){
+                        console.log(e);
+                    }
+                });
+
+
+            });
+        });
+
+
+    </script>
+
+    <style>
+        div ,table {
+            margin-top: 50px;
+            margin-left:  auto;
+            margin-right:  auto;
+           
+        }
+    </style>
+</head>
+<body>
+    <!-- <input type="date" id="st">   -->
+    <div class="input-group">
+        <span class="input-group-text" id="basic-addon3">검색 날짜</span>
+        <input type="date" class="form-control" id="st" aria-describedby="basic-addon3 basic-addon4" >
+        <button type="button" id="btn" style="background-color: black; color: white;" > 조회 </button>
+      </div>
+
+
+    <div>
+    <table class="table table-dark table-striped">
+    
+    
+        <thead>
+            <tr><th>순위</th> 
+                <th>영화명</th> 
+                <th>개봉일</th> 
+                <th>매출액</th> 
+                <th>누적 매출액</th> 
+                <th>관객수</th>
+                <th>누적 관객수</th>
+                <th>당일 스크린 수</th>
+            </tr>
+        </thead>
+        <tbody id="tb1">
+            <!-- <tr>
+                <td>gd</td>
+                <td>gd</td>
+                <td>gd</td>
+                <td>gd</td>
+            </tr> -->
+            
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

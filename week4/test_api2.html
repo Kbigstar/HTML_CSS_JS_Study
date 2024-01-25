@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        let api_Url = "http://apis.data.go.kr/6300000/openapi2022/tourspot/gettourspot";
+        let key = ""; //  공공 데이터포탈 서비스 key
+
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                
+                let rows = $("#rows").val();
+                let pages = $("#pages").val();
+                
+                $.ajax({
+                    // url :  요청 url, type : 요청타입 (GET, POST, PUT, DELETE..)
+                    // data : 전송 데이터, datatype : 리턴 타입, success : 요청 성공시 호출될 콜백함수
+                    url : api_Url
+                    , type : "GET"
+                    , dataType : "JSON"
+                    , data : { serviceKey : key
+                            , numOfRows : rows
+                            , pageNo : pages}
+                    
+                    
+                    , success : function(res){
+                        console.log(res);
+                    }, error(e){
+                        console.log(e);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="rows" value="10">
+    <input type="text" id="pages" value="1">
+    <button type="button" id="btn">관광지 찾기</button>
+</body>
+</html>

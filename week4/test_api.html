@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        let api_Url = "http://apis.data.go.kr/6300000/pis/parkinglotIF";
+        let key = ""; // 공공 데이터포탈 서비스 key
+
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                let rows = $("#rows").val();
+                let pages = $("#pages").val();
+                
+                $.ajax({
+                    url : api_Url
+                    , type : "GET"
+                    , dataType : "xml"
+                    , data : { serviceKey : key
+                            , numOfRows : rows
+                            , pageNo : pages}
+                    , success : function(res){
+                        console.log(res);
+                        // page 수 (xml 안에서 totalCount 태그를 찾아서 안에 있는 text 가져오기)
+                        // totalCount 라는 태그는 활용하는 데이터 마다 다를수있음 태그 확인 후에 활용
+                        let cnt = $(res).find('totalCount').text();
+                        $(res).find("item").each(function(){
+                            let item = $(this);
+                            let nm = item.find('name').text();
+                            let lat = item.find('lat').text(); // 위도
+                            let lon = item.find('lon').text(); // 경도
+                            let addr = item.find('address').text(); // 주소
+                            let baseRate = item.find('baseRate').text(); // 기본요금
+
+                            console.log(nm, lat, lon, addr, baseRate);
+                            // 햅틱 ` 사용 [' ' 아님!]
+                            let str = `<p> 주차장명 : ${nm}, 주소 : ${addr}, 기본요금 : ${baseRate} </p>`;
+                        });
+                        
+                        $("#content").append(str);
+
+                    }, error : function(e){
+                        console.log(e);
+                    }
+                });
+            })
+        });
+
+
+    </script>
+
+    <title>XML</title>
+</head>
+<body>
+    <input type="text" id="rows" value="50">
+    <input type="text" id="pages" value="1">
+    <button type="button" id="btn">요청!</button>
+    <div id="content"></div>
+
+
+</body>
+</html>
