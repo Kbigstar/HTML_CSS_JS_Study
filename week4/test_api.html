@@ -36,9 +36,9 @@
                             console.log(nm, lat, lon, addr, baseRate);
                             // 햅틱 ` 사용 [' ' 아님!]
                             let str = `<p> 주차장명 : ${nm}, 주소 : ${addr}, 기본요금 : ${baseRate} </p>`;
+                            $("#content").append(str);
                         });
                         
-                        $("#content").append(str);
 
                     }, error : function(e){
                         console.log(e);
