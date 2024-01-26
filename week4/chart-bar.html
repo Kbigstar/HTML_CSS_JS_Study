@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chart.js 기본예제</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+      <script>
+
+        function fn_random_color(){
+            let rgb1 = Math.floor(Math.random() * (255+1));
+            let rgb2 = Math.floor(Math.random() * (255+1));
+            let rgb3 = Math.floor(Math.random() * (255+1));
+            let str = 'rgba(' + rgb1 + ','  + rgb2 + ',' + rgb3 + ', 0.3 )';
+
+            return str;
+        }
+
+        let myColor = [];
+        for(let i = 0; i < 3; i++){
+            myColor.push(fn_random_color());
+        }
+        
+        const ctx = document.getElementById('myChart');
+
+        let configs = {   
+          type: 'bar',
+          data: {
+            labels: ['팽수', '길동', '동길'],
+            datasets: [{
+                    label: '수학',
+                    data: [90, 50, 100],
+                    backgroundColor : myColor,
+                    borderWidth: 1
+                },
+                {
+                    label: '영어',
+                    data: [50, 19, 33],
+                    backgroundColor : myColor,
+                    borderWidth: 1
+                }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }};
+
+
+        function getRandomInt(){
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+
+        let myChart = new Chart(ctx, configs);
+
+        
+
+        function fn_change(){
+            console.log(configs);
+            configs.data.datasets[0].data = [getRandomInt(), getRandomInt(), getRandomInt()];
+            configs.data.datasets[0].backgroundColor = 
+            [fn_random_color(), fn_random_color(), fn_random_color()];
+
+            myChart.update(); // 그려진 차트를 변경시키려면 .update() 호출하여 수정
+            // 만들어진걸 지우고 새로 그리는 방법보다 나음
+        }
+      </script>
+      
+      <button type="button" id="btn" onclick="fn_change()">변경</button>
+
+
+
+</body>
+</html>
