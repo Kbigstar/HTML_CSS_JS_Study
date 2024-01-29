@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>radar chart</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 500px; height: 500px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        let data = {
+            labels : ['JAVA', 'DB', 'HTML', 'PYTHON', 'JS', 'SPRING']
+            ,datasets : [{label : '팽수'
+                        , data : [100, 90, 80, 90, 70, 50]
+                        ,fill : true}
+                        ,{label : '동길'
+                        , data : [80, 100, 70, 90, 100, 100]
+                        ,fill : true}
+                        ,{label : '길동'
+                        , data : [80, 50, 100, 90, 10, 50]
+                        ,fill : true}
+                    ]
+        };
+
+        let configs = {
+                type : 'radar'
+                ,data : data
+                ,options : {
+                    elements : {
+                            line : {
+                                borderWidth : 3
+                            }
+                    }
+                }
+        };
+
+        let myChart = new Chart(document.getElementById("myChart"), configs);
+    </script>
+</body>
+</html>

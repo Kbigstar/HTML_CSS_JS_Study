@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fullcalendar.io</title>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script>
+
+
+        
+
+        // // 로컬 스토리지에 저장
+        // let localData = [
+        //             {
+        //                 title : "화면구현 구현하기"
+        //                 ,start : "2024-02-01"
+        //             }
+        //             ,{
+        //                 title : "화면구현 구현하기"
+        //                 ,start : "2024-02-02"
+        //             }
+        // ];
+
+        // localStorage.setItem("events", JSON.stringify(localData));
+            function fn_save(data){ // 생성(저장)
+                let a = []
+                a = JSON.parse(localStorage.getItem("events")) || [];
+                
+                a.push(data);
+                localStorage.setItem("events", JSON.stringify(a));
+                console.log(a);
+                for(let i = 0; i < a.length; i++){
+                    console.log(a[i]['title']);
+                }
+            }
+
+            function fn_edit(title2, newMsg){ // 수정 미완
+                let a = []
+                a = JSON.parse(localStorage.getItem("events")) || [];
+                
+                console.log(a);
+                for(let i = 0; i < a.length; i++){
+                    console.log(title2);
+                    if(title2 == a[i]['title']){
+                        
+                        a[i]['title'] = newMsg
+                    }
+                    localStorage.setItem("events", JSON.stringify(a));
+                    console.log(a[i]['title']);
+            }
+        }
+            
+            function fn_delete(title){ // 삭제
+                let a = []
+                a = JSON.parse(localStorage.getItem("events")) || [];
+                
+                console.log(a);
+                for(let i = 0; i < a.length; i++){
+                    console.log(title);
+                    if(title == a[i]['title']){
+                        
+                        a.pop(a[i]);
+                    }
+                    localStorage.setItem("events", JSON.stringify(a));
+                    
+                }
+            }
+            
+
+        // 1. 최초에는 events 데이터가 0
+        // 2. 캘린더에서 이벤트 추가시 (로컬스토리지에 저장이 되도록)
+        // 3. 브라우저 종료 후에 다시 브라우저를 열었을때 이전 저장내용이 캘린더에 출력 되도록
+
+        window.onload = function(){
+            let data = localStorage.getItem("events");
+            console.log(data);
+            console.log(JSON.parse(data));
+
+            let calendarDiv = document.getElementById("calendar");
+            let calendar = new FullCalendar.Calendar(calendarDiv, {
+                initialView : 'dayGridMonth'
+                , events : JSON.parse(data)
+                // 이벤트가 있는 부분 클릭시
+                , eventClick : function(res){
+                    console.log(res.event.dateStr);
+                    alert("이벤트 내용 : " + res.event.title);
+                    let action = prompt("d : 삭제, e : 수정");
+                    if(action == 'd'){ // 삭제
+                        res.event.remove();
+                        fn_delete(res.event.title);
+                        
+                    }
+                    else if(action == 'e'){
+                        let newMsg = prompt("수정 내용을 입력해주세요");
+                        if(newMsg){
+                            res.event.setProp("title", newMsg);
+                            
+                        }
+                    }
+                }
+                , dateClick : function(res){
+                    let msg = prompt("내용을 입력하세요 ^^");
+                    let eventData;
+                    if(msg){
+                        eventData = {title : msg
+                                    ,start : res.dateStr}
+                        calendar.addEvent(eventData);
+                        console.log(JSON.stringify(eventData));
+
+                        // localStorage.setItem("events").push(JSON.stringify(eventData));
+                        fn_save(eventData);
+                        
+                    }
+                }
+            });
+            calendar.render();
+        
+        }
+    </script>
+</head>
+<body>
+    <div id="calendar" style="width: 800px; margin-left: auto; margin-right: auto; margin-top: 70px;"></div>
+</body>
+</html>

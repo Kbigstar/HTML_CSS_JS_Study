@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.1.0/wordcloud2.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800px" height="800px">
+        <script>
+            let words = [['JAVA', 180], ['ORACLE', 20], ['HTML', 50], ['JS', 100]];
+            WordCloud(document.getElementById("myCanvas"), {list:words});
+        </script>
+    </canvas>
+</body>
+</html>
