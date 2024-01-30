@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화살표 함수</title>
+    <script>
+        // 화살표 함수 (a, b) => {실행로직}
+        let add = (a, b) => {
+            return a + b;
+        }
+        console.log(add(12,3));
+        
+        // 화살표 함수에서 단일 표현식만 포함하는 경우 중괄호 return 생략가능
+        let add2 = (a, b) => a + b;
+        console.log(add2(3,45));
+
+        // 매개변수가 1개라면 괄호도 생략 가능
+        let add3 = x => x + x;
+        console.log(add3(100));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

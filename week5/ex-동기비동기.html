@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = '순서1';
+        let b = '순서2';
+        let c = '순서3';
+        console.log("동기 ====");
+        console.log(a);
+        console.log(b);
+        console.log(c);
+
+        // JavaScript는 동기식으로 동작함(순서대로)
+        // but 비동기 함수가 있음
+        console.log("비동기 ====");
+        console.log(a);
+        setTimeout(()=>{
+            console.log(b);
+        },2000);
+        console.log(c);
+
+        // let test = () => {
+        //     let res = fetch("https://api.upbit.com/v1/market/all");
+        //     let result = res.json();
+        //     console.log(result)
+        // }
+        // test(); // 오류남 fetch는 비동기함수로 함수가 리턴되기전에 아래 코드가 호출되어 오류
+
+        
+        let test2 = async() => {
+            // await 비동기 함수를 동기식으로 기다림
+            // await는 async 함수만 사용가능 (함수명 앞에 async 있어야함.)
+            let res = await fetch("https://api.upbit.com/v1/market/all");
+            let result = res.json(); // return이 promise 형태 (데이터를 가져오려면 then 함수 사용)
+            console.log(result);
+            result.then((data) => console.log(data));
+        }
+        test2();
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+</head>
+<body>
+
+<div>
+    <input type="file" onchange="previewFile()"> <br>
+    <img src="" id="my_image" height="200px" alt="">
+</div>
+
+<div id="webcam-container"></div>
+<div id="label-container"></div>
+
+
+<script type="text/javascript">
+
+    const URL = "./my_model/";
+    let model, webcam, labelContainer, maxPredictions;
+
+
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        model = await tmImage.load(modelURL, metadataURL); // 규칙
+        maxPredictions = model.getTotalClasses(); // 분류 class 수 (ex 고래 3개 종류)
+        labelContainer = document.getElementById("label-container");
+        
+        for(let i = 0; i < maxPredictions; i++){
+            labelContainer.appendChild(document.createElement("div")); // 3개 div 생성
+        }
+    }
+
+    async function predict() {
+        let image = document.getElementById("my_image");
+        let prediction = await model.predict(image); // 예측
+
+        for(let i = 0; i < maxPredictions; i++){
+            let class_pred = prediction[i].className + ":"
+            + prediction[i].probability.toFixed(2); // 확률
+            labelContainer.childNodes[i].innerHTML = class_pred;
+        }
+
+        console.log(prediction);
+    }
+
+    $(document).ready(function (){
+        init();
+        $("#my_image").on("load", function(){
+            predict();
+        });
+    });
+
+
+
+    function previewFile(){
+        let file = document.querySelector("input[type=file]").files[0];
+        let reader = new FileReader();
+
+        reader.onload = function(){
+            let img = document.getElementById("my_image");
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+
+    }
+</script>
+
+
+
+
+</body>
+</html>
