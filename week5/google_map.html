@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- KEY 부분 입력 후 사용 -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap"></script>
+    <title>Document</title>
+    <script>
+        let map;
+        function initMap(){
+            let mapOptions = {
+                center : new google.maps.LatLng(36.35195541381836,127.37833404541016)
+                ,zoom : 15
+            };
+            map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            map.addListener('click', async(event)=>{
+                console.log(event.latLng);
+                console.log(event.latLng.lat());
+                console.log(event.latLng.lng());
+            });
+        }
+    </script>
+    <style>
+        #map-container {
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+        #map {
+            width: 1000px; 
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 지도 출력 -->
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+</body>
+</html>

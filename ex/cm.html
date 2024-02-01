@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cal {
+            box-shadow: 3px 3px 3px 3px gray;
+            width: 1600px;
+            height: 800px;
+            margin-top: 20px;
+            margin-left: auto; 
+            margin-right: auto; 
+          }
+        
+            /*요일*/
+        .fc-col-header-cell-cushion {
+            color: #000;
+            text-decoration: none;
+        }
+        .fc-col-header-cell-cushion:hover {
+            text-decoration: none;
+            color:#999;
+            
+        }
+            /*일자*/
+        .fc-daygrid-day-number{
+            color: #000;
+            font-size:1em;
+            text-decoration: none;
+        }
+        
+
+        
+          /*month/week/day*/
+          /* !important 우선순위 적용 */
+          
+        .fc-button-active{
+            border-color: #ffc107 		!important;
+            background-color: #ffc107 	!important;
+            color: #000 				!important;
+            font-weight: bold 			!important;
+        }
+
+        #navBtn{
+            width: 200px;
+            background-color: #111; 
+            border: 2px solid;
+            border-radius: 1px;
+            border-color: white; 
+            font-weight: bold;
+            color: white;
+        }
+        #navBtn:hover{
+            background-color: green;
+        }
+        
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <script>
+       let dt = '';
+       var calendar;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+            ,titleFormat: function (date) {
+                year = date.date.year;
+                month = date.date.month + 1;
+                
+                return year + "년 " + month + "월";
+            }
+            ,headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            }
+            ,themeSystem: 'bootstrap5'
+            ,dateClick : function(date){
+                dt = date.dateStr;
+                alert('클릭: ' + date.dateStr);
+                $("#calendar_start_date").val(dt);
+                $("#calendarModal").modal("show");
+                
+            }
+            
+        });
+        calendar.render();
+        console.log(dt);
+      });
+
+      let calContent;
+      let content = '';
+      let startDate = '';
+      let endDate = '';
+      let startTime = 'T';
+      let endTime = 'T';
+
+      $(document).ready(function(){
+        $("#mdClose1").click(function(){
+            $("#calendarModal").modal("hide");
+        });
+        $("#mdClose2").click(function(){
+            $("#calendarModal").modal("hide");
+        });
+
+        $("#addCalendar").click(function(){
+            content = $("#calendar_content").val();
+            startDate = $("#calendar_start_date").val();
+    
+            if($("#calendar_end_date").val() == ""){
+                endDate = startDate;
+            }
+            else{
+                endDate = $("#calendar_end_date").val();
+            }
+            
+            startTime +=  $("#calendar_start_time").val();
+            endTime += $("#calendar_end_time").val();
+            
+            if($("#alldayCheck").is(":checked")){
+                startTime = '';
+                endTime = '';
+            }
+
+            $("#calendar_content").val("");
+            $("#calendar_end_date").val("");
+            $("#calendar_start_time").val("09:00");
+            $("#calendar_end_time").val("09:30");
+
+            calContent = {
+                title : content
+                ,start : startDate + startTime
+                ,end : endDate + endTime
+            };
+            console.log(calContent);
+            calendar.addEvent(calContent);
+            $("#calendarModal").modal("hide");
+        });
+        
+      });
+      
+ 
+    </script>
+</head>
+<body>
+    <!-- navBar -->
+        <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">LOGO</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">캘린더</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">GPT</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      메뉴
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">고객센터</a></li>
+                      <li><a class="dropdown-item" href="#">자주찾는 질문</a></li>
+                      
+                      
+                    </ul>
+                  </li>
+
+                </ul>
+                <form class="d-flex" role="search">
+                  <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="keyword"> -->
+                  <button class="btn btn-outline-success" type="button" id="navBtn" >로그인</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+      
+
+     <!-- 캘린더 -->
+    <div class="cal" id='calendar'></div>
+
+    <!-- 일정관리 Modal -->
+    <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">일정을 입력하세요.</h5>
+                <button tyzpe="button" class="close" data-dismiss="modal" aria-label="Close" id="mdClose1" style="height: 30px;">
+                    <!-- &times; x 표시 -->
+                    <span aria-hidden="true">&times;</span> 
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="taskId" class="col-form-label">일정 내용</label>
+                    <input type="text" class="form-control" id="calendar_content" name="calendar_content">
+                    <label for="taskId" class="col-form-label">시작 날짜</label>
+                    <input type="date" class="form-control" id="calendar_start_date" name="calendar_start_date" >
+                    <label for="taskId" class="col-form-label">종료 날짜</label>
+                    <input type="date" class="form-control" id="calendar_end_date" name="calendar_end_date">
+                    <div class="form-group">
+                        <label for="start">시작시간:</label>
+                        <select class="form-control" id="calendar_start_time" >
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                        </select>
+                      </div>
+                       <div class="form-group">
+                        <label for="end">종료시간:</label>
+                        <select class="form-control" id="calendar_end_time">
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                        </select>
+                      </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-check" style="margin-right: 250px;">
+                    <input class="form-check-input" type="checkbox" value="" id="alldayCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      하루종일
+                    </label>
+                    </div>
+                <button type="button" class="btn btn-secondary" id="addCalendar" style="background-color: #009;">추가</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    id="mdClose2" style="background: #900;">취소</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
