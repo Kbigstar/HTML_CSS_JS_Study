@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .cal {
-            box-shadow: 3px 3px 3px 3px gray;
-            width: 1600px;
+        #calendar {
+            /* box-shadow: 3px 3px 3px 3px gray; */
+            border: 1px solid rgba(211, 211, 211, .5);
+            border-radius: 5px;
+            width: 70%;
             height: 800px;
             margin-top: 20px;
-            margin-left: auto; 
-            margin-right: auto; 
+            /* margin-left: 10px;  */
+            margin-right: 10px; 
+          }
+          #tool {
+            border: 1px solid rgba(211, 211, 211, 1);
+            border-radius: 5px;
+            
+            width: 25%;
+            height: 800px;
+            margin-top: 20px;
+            margin-left: 50px; 
+            
           }
         
             /*요일*/
@@ -56,6 +68,36 @@
             background-color: green;
         }
         
+        #toolBtn{
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+          margin-top: 0px;
+          background-color: black; 
+          border: 1px solid rgba(211, 211, 211, 1); 
+          border-radius: 5px;
+          width: 300px;
+          height: 50px;
+          margin-left: 75px;
+          font-size: 20px;
+          font-weight: bold;
+          color: white;
+          
+        }
+
+        #toolBtn:hover{
+          border-color: white;
+            color: white;
+            box-shadow: 0 0.5em 0.5em -0.4em black;
+
+        }
+        .sp{
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          text-align: center;
+        }
+        
+       
+
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
@@ -65,7 +107,7 @@
     <script>
        let dt = '';
        var calendar;
-
+      
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
             calendar = new FullCalendar.Calendar(calendarEl, {
@@ -101,6 +143,9 @@
       let endDate = '';
       let startTime = 'T';
       let endTime = 'T';
+      let colorSelect;
+
+      let year,month,day;
 
       $(document).ready(function(){
         $("#mdClose1").click(function(){
@@ -110,6 +155,9 @@
             $("#calendarModal").modal("hide");
         });
 
+        $("#toolBtn").click(function(){
+          $("#calendarModal").modal("show");
+        })
         $("#addCalendar").click(function(){
             content = $("#calendar_content").val();
             startDate = $("#calendar_start_date").val();
@@ -127,17 +175,44 @@
             if($("#alldayCheck").is(":checked")){
                 startTime = '';
                 endTime = '';
+                if(startDate < endDate){
+                  let allEndDate = new Date(endDate)
+                  console.log(allEndDate);
+                  console.log(allEndDate+1);
+                  year = allEndDate.getFullYear();
+                  month = allEndDate.getMonth()+1;
+                  day = allEndDate.getDate();
+                  
+                  if(day < 10 && month <10)
+                  {
+                    endDate = year+"-0"+month+"-0"+(day+1);
+                  }
+                  else if(day < 10){
+                    endDate = year+"-"+month+"-0"+(day+1);
+                  }
+                  else if(month<10){
+                    endDate = year+"-0"+month+"-"+(day+1);
+                  }
+                  else{
+                     endDate = year+"-"+month+"-"+(day+1);
+                  }
+                  
+                  console.log(endDate);
+
+                }
             }
 
             $("#calendar_content").val("");
             $("#calendar_end_date").val("");
             $("#calendar_start_time").val("09:00");
             $("#calendar_end_time").val("09:30");
-
+            colorSelect = $("#colorSelect").val();
+            $("#colorSelect").val("");
             calContent = {
                 title : content
                 ,start : startDate + startTime
                 ,end : endDate + endTime
+                ,backgroundColor: colorSelect
             };
             console.log(calContent);
             calendar.addEvent(calContent);
@@ -189,9 +264,27 @@
             </div>
           </nav>
       
+          <div class="container-fluid">
+            <div class="row">
+            
+              <div class="col-md-3" id="tool">
+                <span class="sp" style="font-size: 35px;">user님의 캘린더</span>
+                <hr>
+                <button class="btn6" type="button" class="btn btn-light" id="toolBtn">일정 등록</button>
+                <hr>
+                <div style="margin-left: auto; margin-right: auto;">
+                  <input type="color" name="mycolor" id="colorSelect" value="#000000" style="width: 100px; margin-left: 100px;"> 
+                <span style="font-size: 20px; font-weight: bold; ">색상선택</span>
+                </div>
+                
+              </div>
 
+              <div class="col-md-9" id='calendar'></div>
+              
+            </div>
+          </div>
      <!-- 캘린더 -->
-    <div class="cal" id='calendar'></div>
+    
 
     <!-- 일정관리 Modal -->
     <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
