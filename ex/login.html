@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <style>
+         #navBtn{
+            width: 200px;
+            background-color: #111; 
+            border: 2px solid;
+            border-radius: 1px;
+            border-color: white; 
+            font-weight: bold;
+            color: white;
+        }
+        
+        #navBtn:hover{
+            background-color: green;
+        }
+
+        .login_wrapper{
+            display: absolute;
+            flex-direction:column; 
+            width:800px;
+            height: 600px;
+            border:1px solid #ebeaec;
+            box-shadow:0px 2px 4px rgba(0,0,0,0.3);
+            margin: 10px 0px 0px 550px;
+            border-radius:16px;
+            padding:24px;
+            text-align: center;
+            
+        }
+
+        .login_form{
+            display:flex;
+            flex-direction: column;
+            width:500px;
+            margin-top:10px;
+            
+        }   
+
+        .login_form input {
+            margin-top: 10px;
+            margin-left: 230px;
+            width: 300px;
+            height: 50px;
+        }
+
+        .login_form button {
+          margin-top: 10px;
+          margin-left: 230px;
+          width: 300px;
+          height: 50px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <!-- navBar -->
+    <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">LOGO</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">캘린더</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">GPT</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  메뉴
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">고객센터</a></li>
+                  <li><a class="dropdown-item" href="#">자주찾는 질문</a></li>
+                  
+                  
+                </ul>
+              </li>
+
+            </ul>
+            <form class="d-flex" role="search">
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="keyword"> -->
+              <button class="btn btn-outline-success" type="button" id="navBtn" >로그인</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div style="margin-top: 50px;">
+      <span style="text-align: center; font-size: 45px; font-weight: bold; margin-left: 860px;">Calendar</span>
+      <div class="login_wrapper">
+        <p>로고</p> 
+            <p>자리</p> 
+            <hr>
+            <form class="login_form" style="margin-top: 40px;">
+                <input id="login_id" type="text" name="id" placeholder="아이디">
+                <input id="login_pwd" type="password" name="id" placeholder="비밀번호">
+                <button id="login_btn" type="button" disabled>로그인</button>
+            </form>
+            <a href="" style="margin-right: 60px;">회원가입</a>
+            <a href="">아이디 / 비밀번호 찾기</a>
+
+        
+      </div>
+    </div>
+</body>
+</html>
