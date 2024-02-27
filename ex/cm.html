@@ -131,6 +131,23 @@
                 $("#calendarModal").modal("show");
                 
             }
+            , eventClick : function(res){
+                    console.log(res.event.dateStr);
+                    alert("이벤트 내용 : " + res.event.title);
+                    let action = prompt("d : 삭제, e : 수정");
+                    if(action == 'd'){ // 삭제
+                        res.event.remove();
+                        fn_delete(res.event.title);
+                        
+                    }
+                    else if(action == 'e'){
+                        let newMsg = prompt("수정 내용을 입력해주세요");
+                        if(newMsg){
+                            res.event.setProp("title", newMsg);
+                            
+                        }
+                    }
+                }
             
         });
         calendar.render();
@@ -144,6 +161,7 @@
       let startTime = 'T';
       let endTime = 'T';
       let colorSelect;
+      let t_colorSelect;
 
       let year,month,day;
 
@@ -209,11 +227,14 @@
             $("#calendar_end_time").val("09:30");
             colorSelect = $("#colorSelect").val();
             $("#colorSelect").val("");
+            t_colorSelect = $("#t_colorSelect").val();
+            $("#t_colorSelect").val("");
             calContent = {
                 title : content
                 ,start : startDate + startTime
                 ,end : endDate + endTime
                 ,backgroundColor: colorSelect
+                ,textColor : t_colorSelect
             };
             console.log(calContent);
             calendar.addEvent(calContent);
@@ -239,7 +260,10 @@
                 <hr>
                 <div style="margin-left: auto; margin-right: auto;">
                   <input type="color" name="mycolor" id="colorSelect" value="#000000" style="width: 100px; margin-left: 100px;"> 
-                <span style="font-size: 20px; font-weight: bold; ">색상선택</span>
+                <span style="font-size: 20px; font-weight: bold; ">배경 색상</span>
+                <input type="color" name="mycolor" id="t_colorSelect" value="#000000" style="width: 100px; margin-left: 100px;"> 
+                <span style="font-size: 20px; font-weight: bold; ">글씨 색상</span>
+            
                 </div>
                 
               </div>
