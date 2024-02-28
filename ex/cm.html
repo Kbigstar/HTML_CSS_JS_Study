@@ -168,9 +168,21 @@
       $(document).ready(function(){
         $("navbar").load('navbar.html');
         $("#mdClose1").click(function(){
+            $("#calendar_content").val("");
+            $("#calendar_end_date").val("");
+            $("#calendar_start_time").val("09:00");
+            $("#calendar_end_time").val("09:30");
+            $("#colorSelect").val("");
+            $("#t_colorSelect").val("");
             $("#calendarModal").modal("hide");
         });
         $("#mdClose2").click(function(){
+            $("#calendar_content").val("");
+            $("#calendar_end_date").val("");
+            $("#calendar_start_time").val("09:00");
+            $("#calendar_end_time").val("09:30");
+            $("#colorSelect").val("");
+            $("#t_colorSelect").val("");
             $("#calendarModal").modal("hide");
         });
 
