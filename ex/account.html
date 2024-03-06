@@ -36,7 +36,7 @@
             
         }
 
-        .login_form{
+        .login_form {
             display:flex;
             flex-direction: column;
             width:500px;
@@ -86,6 +86,24 @@
               console.log(val);
               
           })
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            form.classList.add('was-validated')
+            const inputs = form.querySelectorAll('input')
+            inputs.forEach(input => {
+                if (!input.validity.valid) {
+                input.classList.add('is-invalid')
+                }
+            })
+            }
+        }, false)
+        })
 
          })
          const hypenTel = (target) => {
@@ -104,15 +122,26 @@
         <div class="login_wrapper">
           <p style="font-size: 30px; font-weight: bold;">회원가입</p> 
               <hr>
-              <form class="login_form" style="margin-top: 40px;">
-                  <input id="login_id" type="text" name="id" placeholder="아이디">
-                  <input id="login_pwd" type="password" name="pwd" placeholder="비밀번호">                  
-                  <input id="login_name" type="text" name="name" placeholder="이름">
-                  <input id="login_phone" type="text" oninput="hypenTel(this)" maxlength="13" placeholder="전화번호">                  
-                  <input id="login_address" type="text" name="addr" placeholder="주소">
+              <form class="login_form needs-validation" novalidate style="margin-top: 40px;">
+                <div class="form-group">
+                    <input id="login_id" type="text" name="id" placeholder="아이디" required class="form-control">
+                    <div class="invalid-feedback">아이디는 필수입니다!</div>
+                    <input id="login_pwd" type="password" name="pwd" placeholder="비밀번호" required class="form-control">
+                    <div class="invalid-feedback">비밀번호는 필수입니다!</div>
+                    <input id="login_name" type="text" name="name" placeholder="이름" required class="form-control">
+                    <div class="invalid-feedback">이름은 필수입니다!</div>
+                    <input id="login_phone" type="text" oninput="hypenTel(this)" maxlength="13" placeholder="전화번호" required class="form-control">
+                    <div class="invalid-feedback">전화번호는 필수입니다!</div>
+                    <input id="login_address" type="text" name="addr" placeholder="주소" required class="form-control">
+                    <div class="invalid-feedback">주소는 필수입니다!</div>
+                  </div>
+                  <!-- <input id="login_pwd" type="password" name="pwd" placeholder="비밀번호" required>                  
+                  <input id="login_name" type="text" name="name" placeholder="이름" required>
+                  <input id="login_phone" type="text" oninput="hypenTel(this)" maxlength="13" placeholder="전화번호" required>                  
+                  <input id="login_address" type="text" name="addr" placeholder="주소" required> -->
                   
                   
-                  <button id="login_btn" type="button">회원가입</button>
+                  <button id="login_btn" type="submit">회원가입</button>
                 </form>
               
           
