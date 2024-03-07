@@ -147,8 +147,20 @@
                         //     res.event.setProp("title", newMsg);
                             
                         // }
-                        $("#calendarModal").modal("show");
-                        res
+
+                        // $("#calendar_content").val(res.event.title);
+                        // $("#calendar_start_date").val(moment(res.event.start).format('YYYY-MM-DD'));
+                        // $("#calendar_end_date").val(moment(res.event.end).format('YYYY-MM-DD'));
+                        // $("#calendar_start_time").val(moment(res.event.start).format('HH:mm'));
+                        // $("#calendar_end_time").val(moment(res.event.end).format('HH:mm'));
+                        // $("#calendarModal").modal("show");
+                        
+
+                        if($("#calendar_content").val() == null){
+                          alert("수정실패..");
+                        } else{
+                          // res.event.setProp("title", )
+                        }
                     }
                 }
             
@@ -177,7 +189,7 @@
             $("#calendar_start_time").val("09:00");
             $("#calendar_end_time").val("09:30");
             $("#colorSelect").val("");
-            $("#t_colorSelect").val("");
+            $("#t_colorSelect").val("#ffffff");
             $("#calendarModal").modal("hide");
         });
         $("#mdClose2").click(function(){ // 모달 종료 우측 하단 [취소] 버튼
@@ -187,7 +199,7 @@
             $("#calendar_start_time").val("09:00");
             $("#calendar_end_time").val("09:30");
             $("#colorSelect").val("");
-            $("#t_colorSelect").val("");
+            $("#t_colorSelect").val("#ffffff");
             $("#calendarModal").modal("hide");
         });
 
@@ -213,10 +225,15 @@
             timeCheck1 = timeCheck1.replace(":", "");
             let timeCheck2 = $("#calendar_end_time").val();
             timeCheck2 = timeCheck2.replace(":", "");
+            console.log(startDate)
+
             
             // 시작시간 / 종료시간 비교
-            if(Number(timeCheck1) > Number(timeCheck2)){
+            if(Number(timeCheck1) > Number(timeCheck2) || Number(startDate) < Number(endDate)){
               alert("종료시간이 시작시간보다 빠릅니다!");
+              
+              $("#calendar_end_time").get(0).focus();
+              return
             }
             // console.log(Number(timeCheck1))
             
@@ -259,7 +276,7 @@
             colorSelect = $("#colorSelect").val();
             $("#colorSelect").val("");
             t_colorSelect = $("#t_colorSelect").val();
-            $("#t_colorSelect").val("");
+            $("#t_colorSelect").val("#ffffff");
          
             calContent = {
                 title : content
@@ -272,7 +289,9 @@
             startTime = '';
             endTime = '';
             console.log(calContent);
+            console.log(calContent.title);
             calendar.addEvent(calContent); // 캘린더에 일정 생성 
+                        
             $("#calendarModal").modal("hide"); // 모달 닫기
         });
         
@@ -297,7 +316,7 @@
                 <div style="margin-left: auto; margin-right: auto;">
                   <input type="color" name="mycolor" id="colorSelect" value="#000000" style="width: 100px; margin-left: 100px;"> 
                 <span style="font-size: 20px; font-weight: bold; ">배경 색상</span>
-                <input type="color" name="mycolor" id="t_colorSelect" value="#000000" style="width: 100px; margin-left: 100px;"> 
+                <input type="color" name="mycolor" id="t_colorSelect" value="#ffffff" style="width: 100px; margin-left: 100px;"> 
                 <span style="font-size: 20px; font-weight: bold; ">글씨 색상</span>
             
                 </div>
