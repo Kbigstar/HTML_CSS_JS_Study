@@ -22,19 +22,20 @@
             background-color: green;
         }
 
-        .login_wrapper{
-            display: absolute;
-            flex-direction:column; 
-            width:800px;
-            height: 600px;
-            border:1px solid #ebeaec;
-            box-shadow:0px 2px 4px rgba(0,0,0,0.3);
-            margin: 10px 0px 0px 550px;
-            border-radius:16px;
-            padding:24px;
-            text-align: center;
-            
-        }
+        .login_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 800px;
+    height: 600px;
+    border: 1px solid #ebeaec;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+    margin: auto;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+}
 
         .login_form {
             display:flex;
@@ -117,8 +118,10 @@
 <body>
     <navbar></navbar>
 
-    <div style="margin-top: 50px;">
-        <span style="text-align: center; font-size: 45px; font-weight: bold; margin-left: 860px;">Calendar</span>
+    <div class="container-fluid" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+        <div>
+            <span style="font-size: 45px; font-weight: bold;">Calendar</span>
+        </div>
         <div class="login_wrapper">
           <p style="font-size: 30px; font-weight: bold;">회원가입</p> 
               <hr>
