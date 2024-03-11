@@ -32,6 +32,7 @@
     border: 1px solid #ebeaec;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
     margin: auto;
+    margin-top: 20px;
     border-radius: 16px;
     padding: 24px;
     text-align: center;
@@ -42,12 +43,12 @@
             flex-direction: column;
             width:500px;
             margin-top:10px;
-            
+            align-items: center; /* 여기에 추가 */
         }   
 
         .login_form input {
             margin-top: 10px;
-            margin-left: 230px;
+            /* margin-left: 120px; */
             width: 300px;
             height: 50px;
         }
@@ -61,7 +62,7 @@
 
         .login_form button {
           margin-top: 10px;
-          margin-left: 230px;
+          /* margin-left: 120px; */
           margin-bottom: 5px;
           width: 300px;
           height: 50px;
@@ -73,7 +74,19 @@
           color: gray;
           text-decoration: none;
         }
+        #login_btn{
+            -moz-transition: background, 1s;
+            -o-transition: background, 1s;
+            -webkit-transition: background, 1s;
+            transition: background, 1s;
+        }
 
+        #login_btn:hover {
+            
+            background-color: blue;
+            color : white;
+        
+        }
     </style>
 
 
@@ -119,13 +132,13 @@
     <navbar></navbar>
 
     <div class="container-fluid" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
-        <div>
+        <div style="margin-top: 70px;">
             <span style="font-size: 45px; font-weight: bold;">Calendar</span>
         </div>
         <div class="login_wrapper">
-          <p style="font-size: 30px; font-weight: bold;">회원가입</p> 
-              <hr>
-              <form class="login_form needs-validation" novalidate style="margin-top: 40px;">
+          <p style="font-size: 30px; font-weight: bold; margin-top: -0px;">회원가입</p> 
+              <!-- <hr> -->
+              <form class="login_form needs-validation" novalidate style="margin-top: 10px;">
                 <div class="form-group">
                     <input id="login_id" type="text" name="id" placeholder="아이디" required class="form-control">
                     <div class="invalid-feedback">아이디는 필수입니다!</div>
